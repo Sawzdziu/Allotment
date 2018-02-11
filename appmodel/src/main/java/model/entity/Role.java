@@ -1,7 +1,10 @@
 package model.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
+@Data
 @Entity
 public class Role {
     private Integer idRole;

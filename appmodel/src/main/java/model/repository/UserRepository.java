@@ -1,5 +1,6 @@
 package model.repository;
 
+import model.entity.Role;
 import model.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
@@ -12,6 +13,7 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 
     List<User> findAll();
     User findByIdUser(Integer id);
+    List<User> findByRole(Role role);
     List<User> findBySurname(String surname);
     User findByEmail(String email);
 }

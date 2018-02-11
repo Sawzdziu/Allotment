@@ -14,7 +14,7 @@ public class HelloControler {
     @GetMapping("/world")
     public String hello(){
         System.out.println("TEST");
-//        System.out.println(userRepositoryDAO.findAll());
+        System.out.println(userRepositoryDAO.findAll());
         return "Hello World!";
     }
 }
