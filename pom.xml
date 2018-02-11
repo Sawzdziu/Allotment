@@ -12,6 +12,7 @@
         <module>appweb</module>
         <module>applogic</module>
         <module>appmodel</module>
+        <module>appsecurity</module>
         <!--<module>frontend</module>-->
     </modules>
 
