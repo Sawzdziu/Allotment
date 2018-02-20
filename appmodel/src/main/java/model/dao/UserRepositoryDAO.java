@@ -19,28 +19,32 @@ public class UserRepositoryDAO {
     private UserRepository userRepository;
 
     @Transactional
-    public List<User> findAll(){
+    public List<User> findAll() {
         return userRepository.findAll();
     }
 
     @Transactional
-    public List<User> findByRole(Role role){
-        return userRepository.findByRole(role);
+    public List<User> findByRole(Role role) {
+        return userRepository.findByRole(role).orElseThrow(() -> new NullPointerException());
     }
 
-    public User findById(Integer id){
-        return userRepository.findByIdUser(id);
+    @Transactional
+    public User findById(Integer id) throws Exception {
+        return userRepository.findByIdUser(id).orElseThrow(() -> new NullPointerException());
     }
 
-    public List<User> findBySurame(String surname){
-        return userRepository.findBySurname(surname);
+    @Transactional
+    public List<User> findBySurame(String surname) {
+        return userRepository.findBySurname(surname).orElseThrow(() -> new NullPointerException());
     }
 
-    public User findByEmail(String email){
-        return userRepository.findByEmail(email);
+    @Transactional
+    public User findByEmail(String email) throws Exception {
+        return userRepository.findByEmail(email).orElseThrow((() -> new NullPointerException()));
     }
 
-    public void save(User user){
+    @Transactional
+    public void save(User user) {
         userRepository.save(user);
     }
 }

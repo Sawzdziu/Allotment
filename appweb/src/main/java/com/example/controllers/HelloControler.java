@@ -12,9 +12,9 @@ public class HelloControler {
     private UserRepositoryDAO userRepositoryDAO;
 
     @GetMapping("/world")
-    public String hello(){
+    public String hello() throws Exception {
         System.out.println("TEST");
-        System.out.println(userRepositoryDAO.findAll());
+        System.out.println(userRepositoryDAO.findById(1));
         return "Hello World!";
     }
 }

@@ -5,6 +5,7 @@ import model.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by psawz on 19.04.2017.
@@ -12,8 +13,8 @@ import java.util.List;
 public interface UserRepository extends CrudRepository<User, Integer> {
 
     List<User> findAll();
-    User findByIdUser(Integer id);
-    List<User> findByRole(Role role);
-    List<User> findBySurname(String surname);
-    User findByEmail(String email);
+    Optional<User> findByIdUser(Integer id);
+    Optional<List<User>> findByRole(Role role);
+    Optional<List<User>> findBySurname(String surname);
+    Optional<User> findByEmail(String email);
 }
