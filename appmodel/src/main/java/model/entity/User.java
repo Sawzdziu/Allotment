@@ -16,6 +16,7 @@ public class User {
     private String password;
     private String email;
     private String phone;
+    private String username;
     private Boolean isActive;
     private Collection<Article> articles;
     private Collection<Commentary> commentaries;
@@ -85,6 +86,16 @@ public class User {
     }
 
     @Basic
+    @Column(name = "username")
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Basic
     @Column(name = "is_active")
     public Boolean getActive() {
         return isActive;
@@ -104,6 +115,7 @@ public class User {
         if (idUser != null ? !idUser.equals(user.idUser) : user.idUser != null) return false;
         if (name != null ? !name.equals(user.name) : user.name != null) return false;
         if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
+        if (username != null ? !username.equals(user.username) : user.username != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
         if (phone != null ? !phone.equals(user.phone) : user.phone != null) return false;
@@ -117,6 +129,7 @@ public class User {
         int result = idUser != null ? idUser.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
@@ -160,7 +173,7 @@ public class User {
         this.recievedMails = recievedMails;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", referencedColumnName = "id_role", nullable = false)
     public Role getRole() {
         return role;

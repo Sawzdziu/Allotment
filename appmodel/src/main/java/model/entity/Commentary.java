@@ -1,12 +1,14 @@
 package model.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Commentary {
     private Integer idCommentary;
     private String text;
     private String author;
+    private Date date;
     private User user;
     private Article article;
 
@@ -29,6 +31,14 @@ public class Commentary {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    @Column(name = "date", columnDefinition= "TIMESTAMP WITH TIME ZONE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date getDate(){return date;}
+
+    public void setDate(Date date){
+        this.date = date;
     }
 
     @Basic

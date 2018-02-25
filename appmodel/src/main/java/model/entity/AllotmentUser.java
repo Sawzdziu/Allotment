@@ -12,6 +12,7 @@ public class AllotmentUser {
 
     @Id
     @Column(name = "id_allotment_user")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getIdArticle() {
         return idAllotmentUser;
     }

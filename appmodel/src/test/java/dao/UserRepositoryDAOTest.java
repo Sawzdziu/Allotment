@@ -18,6 +18,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
+import javax.persistence.NoResultException;
+
 @ActiveProfiles("test")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestModelConfiguration.class)
@@ -35,11 +37,16 @@ public class UserRepositoryDAOTest {
 
     @Test
     public void testFindAllUsers(){
-        Assert.assertEquals("Numer of all users existing in database", 3, userRepositoryDAO.findAll().size());
+        Assert.assertEquals("Number of all users existing in database", 3, userRepositoryDAO.findAll().size());
     }
 
     @Test
     public void testFindAdmin(){
         Assert.assertEquals("Find user with admin privileges", "Kowalski", userRepositoryDAO.findByRole(roleRepositoryDAO.getByName("Admin")).get(0).getSurname());
+    }
+
+    @Test(expected = NoResultException.class)
+    public void testNoResultException() throws Exception {
+        userRepositoryDAO.findById(5);
     }
 }
