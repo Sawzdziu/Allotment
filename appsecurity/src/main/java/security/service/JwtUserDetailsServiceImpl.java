@@ -16,7 +16,6 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        User user = userRepositoryDAO.findByUsername(username);
         return JwtUserFactory.create(userRepositoryDAO.findByUsername(username));
     }
 }
