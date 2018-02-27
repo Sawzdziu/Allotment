@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import model.dao.UserRepositoryDAO;
 import model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,5 +28,19 @@ public class HelloControler {
     public String working(){
         System.out.println("Working");
         return "Working!";
+    }
+
+    @GetMapping("/roleuser")
+    @PreAuthorize("hasRole('USER')")
+    public String user(){
+        System.out.println("User permission");
+        return "User permission!";
+    }
+
+    @GetMapping("/admin")
+    @PreAuthorize("hasRole('ADMIN')")
+    public String admin(){
+        System.out.println("Admin permission");
+        return "Admin permission!";
     }
 }
