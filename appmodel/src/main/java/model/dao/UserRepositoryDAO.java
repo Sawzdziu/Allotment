@@ -32,22 +32,22 @@ public class UserRepositoryDAO {
 
     @Transactional
     public List<User> findByRole(Role role) {
-        return userRepository.findByRole(role).orElseThrow(() -> new NoResultException());
+        return userRepository.findByRole(role).orElseThrow(NoResultException::new);
     }
 
     @Transactional
     public User findById(Integer id) throws Exception {
-        return userRepository.findByIdUser(id).orElseThrow(() -> new NoResultException());
+        return userRepository.findByIdUser(id).orElseThrow(NoResultException::new);
     }
 
     @Transactional
-    public List<User> findBySurame(String surname) {
-        return userRepository.findBySurname(surname).orElseThrow(() -> new NoResultException());
+    public List<User> findByLastName(String lastName) {
+        return userRepository.findByLastName(lastName).orElseThrow(NoResultException::new);
     }
 
     @Transactional
     public User findByEmail(String email) throws Exception {
-        return userRepository.findByEmail(email).orElseThrow((() -> new NoResultException()));
+        return userRepository.findByEmail(email).orElseThrow(NoResultException::new);
     }
 
     @Transactional

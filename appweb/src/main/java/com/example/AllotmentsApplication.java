@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com", "model", "security", "com.example"})
+@ComponentScan(basePackages = {"com", "model", "security", "com.example", "services"})
 @EnableJpaRepositories("model.repository")
 @EntityScan("model.entity")
 public class AllotmentsApplication {

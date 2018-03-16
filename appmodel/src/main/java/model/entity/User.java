@@ -12,7 +12,7 @@ import java.util.Collection;
 public class User {
     private Integer idUser;
     private String name;
-    private String surname;
+    private String lastName;
     private String password;
     private String email;
     private String phone;
@@ -46,13 +46,13 @@ public class User {
     }
 
     @Basic
-    @Column(name = "surname")
-    public String getSurname() {
-        return surname;
+    @Column(name = "last_name")
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastName(String surname) {
+        this.lastName = surname;
     }
 
     @Basic
@@ -114,7 +114,7 @@ public class User {
 
         if (idUser != null ? !idUser.equals(user.idUser) : user.idUser != null) return false;
         if (name != null ? !name.equals(user.name) : user.name != null) return false;
-        if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
+        if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
         if (username != null ? !username.equals(user.username) : user.username != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
@@ -128,7 +128,7 @@ public class User {
     public int hashCode() {
         int result = idUser != null ? idUser.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);

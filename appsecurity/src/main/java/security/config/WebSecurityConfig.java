@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
 import security.core.JwtAuthenticationEntryPoint;
 import security.core.JwtAuthenticationTokenFilter;
 
@@ -50,6 +51,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 // don't need CSRF because token is invulnerable
                 .csrf().disable()
+
+                //CORS
+                .cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()).and()
 
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 

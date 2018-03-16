@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import security.dto.JwtAuthenticationRequest;
 import security.dto.JwtAuthenticationResponse;
-import security.dto.JwtUser;
 import security.utils.JwtTokenUtil;
 
 import javax.servlet.http.HttpServletRequest;
