@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 import services.AllotmentUserService;
 import services.UserService;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @Slf4j
 @RestController
-public class HelloControler {
+public class UserController {
 
     @Autowired
     private UserRepositoryDAO userRepositoryDAO;
@@ -54,6 +55,18 @@ public class HelloControler {
     public String admin(){
         System.out.println("Admin permission");
         return "Admin permission!";
+    }
+
+    @GetMapping("/user/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public UserDto getUser(@PathParam("id") Integer id){
+        return userService.getUserById(id);
+    }
+
+    @GetMapping("/allActiveUsers")
+    @PreAuthorize("hasRole('ADMIN')")
+    public List<UserDto> getAllActiveUsers(){
+        return userService.getAllActiveUsers();
     }
 
     @GetMapping("/allUsers")

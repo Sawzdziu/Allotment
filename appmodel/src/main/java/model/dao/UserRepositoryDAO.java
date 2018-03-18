@@ -36,7 +36,7 @@ public class UserRepositoryDAO {
     }
 
     @Transactional
-    public User findById(Integer id) throws Exception {
+    public User findById(Integer id) {
         return userRepository.findByIdUser(id).orElseThrow(NoResultException::new);
     }
 
@@ -46,8 +46,13 @@ public class UserRepositoryDAO {
     }
 
     @Transactional
-    public User findByEmail(String email) throws Exception {
+    public User findByEmail(String email) {
         return userRepository.findByEmail(email).orElseThrow(NoResultException::new);
+    }
+
+    @Transactional
+    public List<User> findByActiveTrue() {
+        return userRepository.findByActiveTrue().orElseThrow(NoResultException::new);
     }
 
     @Transactional

@@ -2,6 +2,7 @@ package services;
 
 import dto.UserDto;
 import model.dao.UserRepositoryDAO;
+import model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,20 @@ public class UserService {
     @Autowired
     private UserRepositoryDAO userRepositoryDAO;
 
-    public List<UserDto> getAllUsers(){
-        return userRepositoryDAO.findAll().stream().map(UserDto::new).collect(Collectors.toList());
+    public UserDto getUserById(Integer id) {
+        return new UserDto(userRepositoryDAO.findById(id));
     }
+
+    public List<UserDto> getAllUsers() {
+        return mapToUserDto(userRepositoryDAO.findAll());
+    }
+
+    public List<UserDto> getAllActiveUsers() {
+        return mapToUserDto(userRepositoryDAO.findByActiveTrue());
+    }
+
+    private List<UserDto> mapToUserDto(List<User> users) {
+        return users.stream().map(UserDto::new).collect(Collectors.toList());
+    }
+
 }
