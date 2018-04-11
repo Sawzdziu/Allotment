@@ -12,7 +12,7 @@ public class UserDto implements Serializable{
     private boolean active;
     private String email;
     private String name;
-    private String surname;
+    private String lastName;
     private String phone;
 
     public UserDto(User user) {
@@ -20,7 +20,7 @@ public class UserDto implements Serializable{
         this.active = user.getActive();
         this.email = user.getEmail();
         this.name = user.getName();
-        this.surname = user.getLastName();
+        this.lastName = user.getLastName();
         this.phone = user.getPhone();
     }
 }

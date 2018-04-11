@@ -3,10 +3,10 @@
     <role id_role="1" name="Admin"/>
     <role id_role="2" name="User"/>
 
-    <user id_user="1" name="Adam" surname="Kowalski" password="Test" email="a.kowalski@wp.pl" phone="123456789"
+    <user id_user="1" name="Adam" last_name="Kowalski" password="Test" email="a.kowalski@wp.pl" phone="123456789"
           is_active="true" role_id="1"/>
-    <user id_user="2" name="Andrzej" surname="Nowak" password="Nowak" email="a.nowak@onet.pl" phone="123452341"
+    <user id_user="2" name="Andrzej" last_name="Nowak" password="Nowak" email="a.nowak@onet.pl" phone="123452341"
           is_active="true" role_id="2"/>
-    <user id_user="3" name="Justyna" surname="Anders" password="Anders" email="j.anders@gmail.com" phone="88889990"
+    <user id_user="3" name="Justyna" last_name="Anders" password="Anders" email="j.anders@gmail.com" phone="88889990"
           is_active="false" role_id="2"/>
 </dataset>
