@@ -11,6 +11,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -45,7 +46,7 @@ public class UserRepositoryDAOTest {
         Assert.assertEquals("Find user with admin privileges", "Kowalski", userRepositoryDAO.findByRole(roleRepositoryDAO.getByName("Admin")).get(0).getLastName());
     }
 
-    @Test(expected = NoResultException.class)
+    @Test(expected = EmptyResultDataAccessException.class)
     public void testNoResultException() throws Exception {
         userRepositoryDAO.findById(5);
     }
