@@ -8,6 +8,7 @@ import model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import services.AllotmentUserService;
 import services.UserService;
@@ -59,7 +60,7 @@ public class UserController {
 
     @GetMapping("/user/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public UserDto getUser(@PathParam("id") Integer id){
+    public UserDto getUser(@PathVariable("id") Integer id){
         return userService.getUserById(id);
     }
 
