@@ -23,12 +23,22 @@ public class AllotmentUserRepositoryDAO {
     }
 
     @Transactional
-    public AllotmentUser findAllotmentUserByAllotment(Allotment allotment) {
+    public List<AllotmentUser> findAllotmentUserByAllotment(Allotment allotment) {
         return allotmentUserRepository.findByAllotment(allotment).orElseThrow(NoResultException::new);
     }
 
     @Transactional
     public List<AllotmentUser> findAllotmentsUsersByUsers(List<User> users){
         return allotmentUserRepository.findAllByUserIn(users).orElseThrow(NoResultException::new);
+    }
+
+    @Transactional
+    public List<AllotmentUser> findAllotmentsUsersActive(){
+        return allotmentUserRepository.findAllByActiveTrue().orElseThrow(NoResultException::new);
+    }
+
+    @Transactional
+    public List<AllotmentUser> findHistoryUsers(Allotment allotment){
+        return allotmentUserRepository.findAllByAllotmentAndActiveFalse(allotment).orElseThrow(NoResultException::new);
     }
 }

@@ -26,7 +26,15 @@ public class AllotmentUserService {
         return findAllAllotmentUser();
     }
 
+    public List<UserAllotmentDto> getAllActiveAllotmentUserDto(){
+        return findAllActiveAllotmentUser();
+    }
+
     private List<UserAllotmentDto> findAllAllotmentUser() {
-        return allotmentUserRepositoryDAO.findAllotmentsUsersByUsers(userRepositoryDAO.findAll()).stream().map(allotmentUser -> new UserAllotmentDto(allotmentUser.getUser(), allotmentUser.getAllotment())).collect(Collectors.toList());
+        return allotmentUserRepositoryDAO.findAllotmentsUsersByUsers(userRepositoryDAO.findAll()).stream().map(allotmentUser -> new UserAllotmentDto(allotmentUser.getUser(), allotmentUser.getAllotment(), allotmentUser.getActive())).collect(Collectors.toList());
+    }
+
+    private List<UserAllotmentDto> findAllActiveAllotmentUser() {
+        return allotmentUserRepositoryDAO.findAllotmentsUsersActive().stream().map(allotmentUser -> new UserAllotmentDto(allotmentUser.getUser(), allotmentUser.getAllotment(), allotmentUser.getActive())).collect(Collectors.toList());
     }
 }

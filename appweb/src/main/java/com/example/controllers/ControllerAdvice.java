@@ -3,6 +3,7 @@ package com.example.controllers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.persistence.NoResultException;
@@ -14,6 +15,12 @@ public class ControllerAdvice {
 
     private void logError(Exception e) {
         log.error("Error caught by Global Exception Handler", e);
+    }
+
+    @ExceptionHandler(value = BadCredentialsException.class)
+    public ResponseEntity<String> badCredentialException(Exception e) throws Exception {
+        logError(e);
+        return new ResponseEntity<>("Username or password incorrect", HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(value = NoResultException.class)
