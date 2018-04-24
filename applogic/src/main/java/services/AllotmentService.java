@@ -1,5 +1,6 @@
 package services;
 
+import dto.AllotmentDto;
 import dto.UserAllotmentDto;
 import model.dao.AllotmentRepositoryDAO;
 import model.dao.AllotmentUserRepositoryDAO;
@@ -25,6 +26,10 @@ public class AllotmentService {
         return getAllActiveAllotment();
     }
 
+    public void editAllotment(AllotmentDto allotmentDto){
+        persistAllotment(updateAllotment(allotmentDto));
+    }
+
     private List<Allotment> getAllAllotment() {
         return allotmentRepositoryDAO.findAll();
     }
@@ -41,5 +46,18 @@ public class AllotmentService {
         List<UserAllotmentDto> list = allotmentUsers;
         list.sort(Comparator.comparing(a -> a.getAllotmentDto().getIdAllotment()));
         return list;
+    }
+
+    private Allotment updateAllotment(AllotmentDto allotmentDto){
+        Allotment allotment = allotmentRepositoryDAO.getAllotmentById(allotmentDto.getIdAllotment());
+        allotment.setBower(allotmentDto.getBower());
+        allotment.setComposter(allotmentDto.getComposter());
+        allotment.setTreeNumber(allotmentDto.getTreeNumber());
+
+        return allotment;
+    }
+
+    private void persistAllotment(Allotment allotment){
+        allotmentRepositoryDAO.save(allotment);
     }
 }

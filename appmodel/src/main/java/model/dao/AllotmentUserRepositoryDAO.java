@@ -41,4 +41,9 @@ public class AllotmentUserRepositoryDAO {
     public List<AllotmentUser> findHistoryUsers(Allotment allotment){
         return allotmentUserRepository.findAllByAllotmentAndActiveFalse(allotment).orElseThrow(NoResultException::new);
     }
+
+    @Transactional
+    public void save(AllotmentUser allotmentUser){
+        allotmentUserRepository.save(allotmentUser);
+    }
 }

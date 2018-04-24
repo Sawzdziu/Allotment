@@ -5,10 +5,7 @@ import dto.AllotmentHistoryDto;
 import dto.UserAllotmentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import services.AllotmentHistoryService;
 import services.AllotmentService;
 
@@ -27,15 +24,20 @@ public class AllotmentController {
 
     @GetMapping("/getAllAllotments")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public List<UserAllotmentDto> getAllAllotments(){
+    public List<UserAllotmentDto> getAllAllotments() {
         return allotmentService.getAllAllotments();
     }
 
     @GetMapping("/getAllotmentHistory/{id}")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public AllotmentHistoryDto getAllotmentHistory(@PathVariable("id") Integer id){
+    public AllotmentHistoryDto getAllotmentHistory(@PathVariable("id") Integer id) {
         return allotmentHistoryService.getAllotmentHistory(id);
     }
 
-
+    @PutMapping("/edit/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN")
+    public String editAllotment(@PathVariable("id") Integer id, AllotmentDto allotmentDto) {
+        allotmentService.editAllotment(allotmentDto);
+        return "Edited successfully";
+    }
 }

@@ -26,7 +26,7 @@ public class ControllerAdvice {
     @ExceptionHandler(value = NoResultException.class)
     public ResponseEntity<String> defaultErrorHandler(Exception e) throws Exception {
         logError(e);
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("No data found", HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(value = {NullPointerException.class, IllegalAccessException.class, UnsupportedOperationException.class, IOException.class})
