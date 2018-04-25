@@ -35,7 +35,7 @@ public class AllotmentController {
     }
 
     @PutMapping("/edit/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public String editAllotment(@PathVariable("id") Integer id, AllotmentDto allotmentDto) {
         allotmentService.editAllotment(allotmentDto);
         return "Edited successfully";
