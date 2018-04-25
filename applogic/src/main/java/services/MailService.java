@@ -42,20 +42,43 @@ public class MailService {
         return mapToMailBodyDto(recipientRepositoryDAO.findAllMailsForUser(userRepositoryDAO.findByUsername(authenticationService.getUsername())));
     }
 
+    /**
+     * Method creates new Mail and Mailbody, then create Recipient entity's for each User
+     *
+     * @param newMailDto
+     */
     public void createNewMail(NewMailDto newMailDto) {
         Mail mail = new Mail();
         mail.setSubject(newMailDto.getSubject());
-
+        mail.setUserSender(userRepositoryDAO.findByUsername(authenticationService.getUsername()));
 
         Mailbody mailBody = new Mailbody();
         mailBody.setText(newMailDto.getText());
-        mail.setMailBody(mailBody);
         mailBody.setMail(mail);
 
+        mail.setMailBody(mailBody);
+
+        persistMail(mail);
+
+        persistRecipients(newMailDto.getReceivers(), mail);
     }
 
-    private void persistMail(Mail mail){
+    private void persistMail(Mail mail) {
         mailRepositoryDAO.save(mail);
+    }
+
+    private void persistRecipients(List<Integer> ids, Mail mail) {
+        ids.stream().forEach(id -> saveRecipient(id, mail));
+    }
+
+    private void saveRecipient(Integer id, Mail mail) {
+        Recipient recipient = new Recipient();
+        recipient.setIdRecipient(1000L);
+        recipient.setMail(mail);
+        recipient.setUserReciever(userRepositoryDAO.findById(id));
+        recipient.setSeen(false);
+
+        recipientRepositoryDAO.persistRecipient(recipient);
     }
 
     private List<MailDto> mapToMailDto(Collection<Recipient> receivedMails) {

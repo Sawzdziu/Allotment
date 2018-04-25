@@ -28,4 +28,9 @@ public class RecipientRepositoryDAO {
     public List<Recipient> findLastFiveMailsForUser(User user){
         return recipientRepository.findFirst5ByUserRecieverOrderByIdRecipientDesc(user).orElseThrow(() -> new NoResultException());
     }
+
+    @Transactional
+    public void persistRecipient(Recipient recipient){
+        recipientRepository.save(recipient);
+    }
 }

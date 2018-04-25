@@ -4,10 +4,7 @@ import dto.mail.MailBodyDto;
 import dto.mail.MailDto;
 import dto.mail.NewMailDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import services.MailService;
 
 import java.util.List;
@@ -33,7 +30,7 @@ public class MailController {
     }
 
     @PostMapping("/new")
-    public void newMail(NewMailDto newMailDto){
+    public void newMail(@RequestBody NewMailDto newMailDto){
         mailService.createNewMail(newMailDto);
     }
 }
