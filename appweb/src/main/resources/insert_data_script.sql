@@ -250,6 +250,9 @@ insert into rodobronca.allotment (id_allotment, bower, composter, number, square
 insert into rodobronca.allotment (id_allotment, bower, composter, number, squaremeter, tree_number) values (249, false, true, 249, 154, 3);
 insert into rodobronca.allotment (id_allotment, bower, composter, number, squaremeter, tree_number) values (250, false, true, 250, 234, 1);
 
+-- alter sequence allotment_id_allotment_seq RESTART with 250;
+SELECT setval('rodobronca.allotment_id_allotment_seq', 250);
+
 --Insert ROLE
 insert into rodobronca.role (id_role, name) values (1, 'ROLE_USER');
 insert into rodobronca.role (id_role, name) values (2, 'ROLE_ADMIN');
@@ -556,6 +559,11 @@ insert into rodobronca.user (id_user, name, last_name, email, password, phone, r
 insert into rodobronca.user (id_user, name, last_name, email, password, phone, role_id, username, is_active) values (299, 'Glynda', 'Lowre', 'glowre8a@google.pl', 'PkUi8qhe1', '967-695-1223', 2, 'glowre8a', true);
 insert into rodobronca.user (id_user, name, last_name, email, password, phone, role_id, username, is_active) values (300, 'Kissiah', 'Pull', 'kpull8b@nsw.gov.au', 'uQXcmfZ', '798-148-2417', 2, 'kpull8b', true);
 
+-- alter sequence user_id_user_seq RESTART with 300;
+SELECT setval('rodobronca.user_id_user_seq', 300);
+
+
+
 --Insert article
 insert into rodobronca.article (id_article, author, date, title, text, user_id) values (1, 'Aeriel Gandy', '2017-07-17 07:58:43', 'pede justo', 'quis turpis eget elit sodales scelerisque mauris sit amet eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum', 16);
 insert into rodobronca.article (id_article, author, date, title, text, user_id) values (2, 'Stephanus Barta', '2017-05-29 20:53:28', 'elementum eu interdum', 'potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non', 28);
@@ -598,6 +606,10 @@ insert into rodobronca.article (id_article, author, date, title, text, user_id) 
 insert into rodobronca.article (id_article, author, date, title, text, user_id) values (39, 'Chaunce Ramet', '2017-09-27 09:55:25', 'eget massa', 'justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id', 9);
 insert into rodobronca.article (id_article, author, date, title, text, user_id) values (40, 'Correy Dugmore', '2017-07-12 22:59:19', 'maecenas leo odio condimentum id', 'viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et tempus semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet', 4);
 
+-- alter sequence article_id_article_seq RESTART with 40;
+SELECT setval('rodobronca.article_id_article_seq', 40);
+
+
 --Insert commentary
 insert into rodobronca.commentary (id_commentary, author, text, user_id, date, article_id) values (1, 'Bryna Cowely', 'sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat', 30, '2017-03-27 20:26:29', 37);
 insert into rodobronca.commentary (id_commentary, author, text, user_id, date, article_id) values (2, 'Domini De Wolfe', 'amet justo morbi ut odio cras', 9, '2017-07-07 09:30:29', 15);
@@ -639,6 +651,10 @@ insert into rodobronca.commentary (id_commentary, author, text, user_id, date, a
 insert into rodobronca.commentary (id_commentary, author, text, user_id, date, article_id) values (38, 'Wyatt Titford', 'nulla tempus vivamus in felis eu sapien cursus', 38, '2018-02-18 06:47:34', 9);
 insert into rodobronca.commentary (id_commentary, author, text, user_id, date, article_id) values (39, 'Ancell Lygo', 'in hac habitasse platea dictumst etiam faucibus cursus', 40, '2017-08-26 23:03:46', 9);
 insert into rodobronca.commentary (id_commentary, author, text, user_id, date, article_id) values (40, 'Nicolea Litchfield', 'volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in felis eu', 1, '2017-11-18 07:05:17', 1);
+
+-- alter sequence commentary_id_commentary_seq RESTART with 40;
+SELECT setval('rodobronca.commentary_id_commentary_seq', 40);
+
 
 --Insert allotment_user
 insert into rodobronca.allotment_user (id_allotment_user, allotment_id, user_id, is_active) values (1, 143, 192, false);
@@ -792,6 +808,10 @@ insert into rodobronca.allotment_user (id_allotment_user, allotment_id, user_id,
 insert into rodobronca.allotment_user (id_allotment_user, allotment_id, user_id, is_active) values (149, 52, 161, false);
 insert into rodobronca.allotment_user (id_allotment_user, allotment_id, user_id, is_active) values (150, 174, 101, false);
 
+-- alter sequence allotment_user_id_allotment_user_seq RESTART with 150;
+SELECT setval('rodobronca.allotment_user_id_allotment_user_seq', 150);
+
+
 
 --Insert mail
 insert into rodobronca.mail (id_mail, subject, user_sender_id) values (1, 'risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia sapien quis libero nullam sit amet', 11);
@@ -834,6 +854,10 @@ insert into rodobronca.mail (id_mail, subject, user_sender_id) values (37, 'vita
 insert into rodobronca.mail (id_mail, subject, user_sender_id) values (38, 'aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque viverra', 32);
 insert into rodobronca.mail (id_mail, subject, user_sender_id) values (39, 'vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt', 15);
 insert into rodobronca.mail (id_mail, subject, user_sender_id) values (40, 'diam cras pellentesque volutpat dui maecenas tristique est et tempus semper est quam pharetra magna', 16);
+
+-- alter sequence mail_id_mail_seq RESTART with 40;
+SELECT setval('rodobronca.mail_id_mail_seq', 40);
+
 
 --Insert mailbody
 insert into rodobronca.mailbody (mail_id, text) values (1, 'Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.');
@@ -1229,6 +1253,10 @@ insert into rodobronca.recipient (id_recipient, seen, mail_id, user_reciver_id) 
 insert into rodobronca.recipient (id_recipient, seen, mail_id, user_reciver_id) values (349, false, 20, 29);
 insert into rodobronca.recipient (id_recipient, seen, mail_id, user_reciver_id) values (350, true, 5, 29);
 
+-- alter sequence recipient_id_recipient_seq RESTART with 350;
+SELECT setval('rodobronca.recipient_id_recipient_seq', 350);
+
+
 --Insert payment
 insert into rodobronca.payment (id_payment, charge, date, paid, title, allotment_user_id) values (1, 190.59, '2018-02-08 23:39:33', false, 'leo rhoncus', 1);
 insert into rodobronca.payment (id_payment, charge, date, paid, title, allotment_user_id) values (2, 314.74, '2017-04-04 04:15:02', true, 'gravida nisi at', 14);
@@ -1330,3 +1358,7 @@ insert into rodobronca.payment (id_payment, charge, date, paid, title, allotment
 insert into rodobronca.payment (id_payment, charge, date, paid, title, allotment_user_id) values (98, 310.94, '2017-10-10 00:55:17', true, 'sem praesent id massa id', 8);
 insert into rodobronca.payment (id_payment, charge, date, paid, title, allotment_user_id) values (99, 350.47, '2017-05-12 04:06:31', false, 'praesent lectus vestibulum quam', 16);
 insert into rodobronca.payment (id_payment, charge, date, paid, title, allotment_user_id) values (100, 462.93, '2017-09-24 12:38:29', false, 'amet diam in', 14);
+
+-- alter sequence payment_id_payment_seq RESTART with 100;
+SELECT setval('rodobronca.payment_id_payment_seq', 100);
+

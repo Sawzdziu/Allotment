@@ -1,17 +1,18 @@
 package model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+//import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+//import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="idMail")
+//@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="idMail")
 public class Mail {
     private Long idMail;
     private String subject;
     private User userSender;
+    @PrimaryKeyJoinColumn
     private Mailbody mailBody;
     private Collection<Recipient> recipients;
 
@@ -66,7 +67,7 @@ public class Mail {
         this.userSender = userSender;
     }
 
-    @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "mail")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "mail")
     public Mailbody getMailBody() {
         return mailBody;
     }

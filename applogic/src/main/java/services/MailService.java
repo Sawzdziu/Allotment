@@ -52,14 +52,18 @@ public class MailService {
         mail.setSubject(newMailDto.getSubject());
         mail.setUserSender(userRepositoryDAO.findByUsername(authenticationService.getUsername()));
 
+        //Set text of mail
         Mailbody mailBody = new Mailbody();
         mailBody.setText(newMailDto.getText());
+
+        //Set mailbody for mail
+        mail.setMailBody(mailBody);
         mailBody.setMail(mail);
 
-        mail.setMailBody(mailBody);
-
+        //persist mail
         persistMail(mail);
 
+        //persist all recipients
         persistRecipients(newMailDto.getReceivers(), mail);
     }
 
@@ -67,13 +71,17 @@ public class MailService {
         mailRepositoryDAO.save(mail);
     }
 
+    /**
+     * Method iterates through users id and create recipient object with id of mail
+     * @param ids
+     * @param mail
+     */
     private void persistRecipients(List<Integer> ids, Mail mail) {
         ids.stream().forEach(id -> saveRecipient(id, mail));
     }
 
     private void saveRecipient(Integer id, Mail mail) {
         Recipient recipient = new Recipient();
-        recipient.setIdRecipient(1000L);
         recipient.setMail(mail);
         recipient.setUserReciever(userRepositoryDAO.findById(id));
         recipient.setSeen(false);

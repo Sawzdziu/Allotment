@@ -1,12 +1,12 @@
 package model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+//import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+//import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 
 @Entity
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="mailId")
+//@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="mailId")
 public class Mailbody {
     private Long mailId;
     private String text;
@@ -49,9 +49,9 @@ public class Mailbody {
         return text != null ? text.hashCode() : 0;
     }
 
-    @OneToOne
-    @PrimaryKeyJoinColumn
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "mail_id", referencedColumnName = "id_mail", nullable = false)
+    @MapsId
     public Mail getMail() {
         return mail;
     }
