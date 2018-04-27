@@ -1,11 +1,13 @@
 package dto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import model.entity.User;
 
 import java.io.Serializable;
 
 @Data
+@NoArgsConstructor
 public class UserDto implements Serializable{
 
     private Integer idUser;
@@ -14,6 +16,7 @@ public class UserDto implements Serializable{
     private String name;
     private String lastName;
     private String phone;
+    private String role;
 
     public UserDto(User user) {
         this.idUser = user.getIdUser();
@@ -22,5 +25,6 @@ public class UserDto implements Serializable{
         this.name = user.getName();
         this.lastName = user.getLastName();
         this.phone = user.getPhone();
+        this.role = user.getRole().getName();
     }
 }
