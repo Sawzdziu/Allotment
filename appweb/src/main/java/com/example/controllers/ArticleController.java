@@ -1,10 +1,9 @@
 package com.example.controllers;
 
-import dto.ArticleDto;
+import dto.article.ArticleDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 import services.ArticleService;
 
 import java.util.List;
@@ -17,12 +16,26 @@ public class ArticleController {
     private ArticleService articleService;
 
     @GetMapping("/getLast")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public List<ArticleDto> getLastFiveMails(){
         return articleService.getLastFiveArticles();
     }
 
     @GetMapping("/getAll")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public List<ArticleDto> getAllMails(){
         return articleService.getAllArticles();
+    }
+
+    @PostMapping("/new")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public void createNewAritcle(@RequestBody ArticleDto articleDto){
+        articleService.createNewArticle(articleDto);
+    }
+
+    @PostMapping("/edit/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public void editArticle(@RequestBody ArticleDto articleDto){
+        articleService.editArticle(articleDto);
     }
 }

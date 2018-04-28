@@ -8,28 +8,20 @@ import dto.mail.MailBodyDto;
 import dto.mail.MailDto;
 import dto.mail.NewMailDto;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-import security.dto.JwtUser;
 import services.MailService;
 import services.TestServicesConfiguration;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 @ActiveProfiles("test")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -38,26 +30,10 @@ import static org.mockito.Mockito.when;
         TransactionalTestExecutionListener.class})
 @DatabaseSetup(value = "classpath:mailServiceTest.xml")
 @DatabaseTearDown(value = "classpath:mailServiceTest.xml", type = DatabaseOperation.DELETE_ALL)
-public class MailServiceTest {
+public class MailServiceTest extends AuthenticationSetup {
 
     @Autowired
     private MailService mailService;
-
-    @Before
-    public void setUp(){
-        JwtUser applicationUser = new JwtUser();
-        applicationUser.setUsername("Admin");
-
-        Authentication authentication = mock(Authentication.class);
-
-        SecurityContext securityContext = mock(SecurityContext.class);
-
-        when(securityContext.getAuthentication()).thenReturn(authentication);
-
-        SecurityContextHolder.setContext(securityContext);
-
-        when(SecurityContextHolder.getContext().getAuthentication().getPrincipal()).thenReturn(applicationUser);
-    }
 
     @Test
     public void getLastFiveMails() {

@@ -6,6 +6,7 @@ import model.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.NoResultException;
 import java.util.Date;
 import java.util.List;
 
@@ -19,18 +20,22 @@ public class PaymentRepositoryDAO {
     private PaymentRepository paymentRepository;
 
     public Payment getByPaymentId(Integer id) {
-        return paymentRepository.findByIdPayment(id);
+        return paymentRepository.findByIdPayment(id).orElseThrow(NoResultException::new);
     }
 
-    public List<Payment> getAll(){
+    public List<Payment> getAll() {
         return paymentRepository.findAll();
     }
 
-    public List<Payment> getPaymentByDate(Date date){
-        return  paymentRepository.findByDate(date);
+    public List<Payment> getPaymentByDate(Date date) {
+        return paymentRepository.findByDate(date).orElseThrow(NoResultException::new);
     }
 
-    public void save(Payment payment){
+    public List<Payment> getPaymentForUser(User user){
+        return paymentRepository.findAllByAllotmentUserByAllotmentUserId_User(user).orElseThrow(NoResultException::new);
+    }
+
+    public void save(Payment payment) {
         paymentRepository.save(payment);
     }
 

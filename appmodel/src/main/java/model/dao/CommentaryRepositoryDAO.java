@@ -6,6 +6,7 @@ import model.repository.CommentaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 
 /**
@@ -22,7 +23,11 @@ public class CommentaryRepositoryDAO {
     }
 
     public List<Commentary> getCommentariesByUser(User user){
-        return commentaryRepository.findByUser(user);
+        return commentaryRepository.findByUser(user).orElseThrow(NoResultException::new);
+    }
+
+    public List<Commentary> getAllCommentariesForAticleId(Integer id){
+        return commentaryRepository.findAllByArticleIdArticle(id).orElseThrow(NoResultException::new);
     }
 
     public void save(Commentary commentary){

@@ -39,7 +39,7 @@ public class Commentary {
 
     @Column(name = "date", columnDefinition= "TIMESTAMP WITH TIME ZONE")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date getDate(){return date;}
+    public Date getDate(){return date;}
 
     public void setDate(Date date){
         this.date = date;

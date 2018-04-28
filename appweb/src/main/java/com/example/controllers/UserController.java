@@ -43,18 +43,20 @@ public class UserController {
     }
 
     @GetMapping("/getAllUserAllotment")
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public List<UserAllotmentDto> getAllUserAllotment(){
         System.out.println(allotmentUserService.getAllAllotmentUserDto().size());
         return allotmentUserService.getAllAllotmentUserDto();
     }
 
     @GetMapping("/getAllActiveUserAllotment")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public List<UserAllotmentDto> getAllActiveUserAllotment(){
         System.out.println(allotmentUserService.getAllActiveAllotmentUserDto().size());
         return allotmentUserService.getAllActiveAllotmentUserDto();
     }
 
-    @PutMapping("/edit/{id")
+    @PutMapping("/edit/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public String editUser(@PathVariable("id") Integer id, UserDto userDto){
         userService.editUser(userDto);

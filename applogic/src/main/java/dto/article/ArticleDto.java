@@ -1,12 +1,14 @@
-package dto;
+package dto.article;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import model.entity.Article;
 
 import java.util.Date;
 
 
 @Data
+@NoArgsConstructor
 public class ArticleDto {
 
     private Integer idArticle;
