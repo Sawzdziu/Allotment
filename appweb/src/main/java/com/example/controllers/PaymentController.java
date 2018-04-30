@@ -1,11 +1,10 @@
 package com.example.controllers;
 
-import dto.PaymentDto;
+import dto.payment.AddPaymentDto;
+import dto.payment.PaymentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import services.PaymentService;
 
 import java.util.List;
@@ -23,9 +22,27 @@ public class PaymentController {
         return paymentService.getAllPayments();
     }
 
-    @GetMapping("/getPayments")
+    @GetMapping("/getPaymentsForUser")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public List<PaymentDto> getPayments(){
+    public List<PaymentDto> getPaymentsForUser(){
         return paymentService.getPayments();
+    }
+
+    @PostMapping("/new")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public void createPayment(@RequestBody AddPaymentDto addPaymentDto){
+        paymentService.createPayment(addPaymentDto);
+    }
+
+    @PutMapping("/update")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public void updatePayment(@RequestBody PaymentDto paymentDto){
+        paymentService.updatePayment(paymentDto);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public void deletePayment(@PathVariable Integer id){
+        paymentService.deletePayment(id);
     }
 }

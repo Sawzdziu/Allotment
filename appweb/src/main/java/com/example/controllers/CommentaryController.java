@@ -19,8 +19,8 @@ public class CommentaryController {
         commentaryService.addCommentary(commentaryDto);
     }
 
-    @PutMapping("/edit")
-    public void editCommentary(@RequestBody CommentaryDto commentaryDto){
+    @PutMapping("/edit/{id}")
+    public void editCommentary(@PathVariable Integer id,@RequestBody CommentaryDto commentaryDto){
         commentaryService.editCommentary(commentaryDto);
     }
 

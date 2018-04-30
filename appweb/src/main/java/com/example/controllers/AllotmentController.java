@@ -28,6 +28,12 @@ public class AllotmentController {
         return allotmentService.getAllAllotments();
     }
 
+    @GetMapping("/getAllActiveAllotments")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public List<UserAllotmentDto> getAllActiveAllotments() {
+        return allotmentService.getAllActiveAllotments();
+    }
+
     @GetMapping("/getAllotmentHistory/{id}")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public AllotmentHistoryDto getAllotmentHistory(@PathVariable("id") Integer id) {

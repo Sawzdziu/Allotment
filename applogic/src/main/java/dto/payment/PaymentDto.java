@@ -1,5 +1,7 @@
-package dto;
+package dto.payment;
 
+import dto.AllotmentDto;
+import dto.UserDto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import model.entity.Payment;

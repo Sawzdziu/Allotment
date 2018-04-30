@@ -33,7 +33,7 @@ public class ArticleController {
         articleService.createNewArticle(articleDto);
     }
 
-    @PostMapping("/edit/{id}")
+    @PutMapping("/edit/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public void editArticle(@RequestBody ArticleDto articleDto){
         articleService.editArticle(articleDto);

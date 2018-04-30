@@ -31,12 +31,16 @@ public class PaymentRepositoryDAO {
         return paymentRepository.findByDate(date).orElseThrow(NoResultException::new);
     }
 
-    public List<Payment> getPaymentForUser(User user){
+    public List<Payment> getPaymentForUser(User user) {
         return paymentRepository.findAllByAllotmentUserByAllotmentUserId_User(user).orElseThrow(NoResultException::new);
     }
 
     public void save(Payment payment) {
         paymentRepository.save(payment);
+    }
+
+    public void delete(Integer id) {
+        paymentRepository.delete(id);
     }
 
 }

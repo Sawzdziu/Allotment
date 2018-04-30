@@ -18,6 +18,11 @@ public class AllotmentUserRepositoryDAO {
     private AllotmentUserRepository allotmentUserRepository;
 
     @Transactional
+    public List<AllotmentUser> findAllAllotmentUser(){
+        return allotmentUserRepository.findAll();
+    }
+
+    @Transactional
     public AllotmentUser findAllotmentUserByUser(User user) {
         return allotmentUserRepository.findByUser(user).orElseThrow(NoResultException::new);
     }

@@ -26,7 +26,7 @@ public class CommentaryRepositoryDAO {
         return commentaryRepository.findByUser(user).orElseThrow(NoResultException::new);
     }
 
-    public List<Commentary> getAllCommentariesForAticleId(Integer id){
+    public List<Commentary> getAllCommentariesForArticleId(Integer id){
         return commentaryRepository.findAllByArticleIdArticle(id).orElseThrow(NoResultException::new);
     }
 

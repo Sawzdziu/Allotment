@@ -27,7 +27,7 @@ public class CommentaryService {
     private AuthenticationService authenticationService;
 
     public List<CommentaryDto> getCommentariesFromArticle(Integer id){
-        return mapToCommentaryDto(commentaryRepositoryDAO.getAllCommentariesForAticleId(id));
+        return mapToCommentaryDto(commentaryRepositoryDAO.getAllCommentariesForArticleId(id));
     }
 
     public void addCommentary(CommentaryDto commentaryDto){

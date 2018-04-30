@@ -23,7 +23,7 @@ public class AllotmentHistoryService {
 
     private AllotmentHistoryDto findHistoryUsers(Integer id){
         AllotmentHistoryDto allotmentHistoryDto = new AllotmentHistoryDto(id);
-        allotmentUserRepositoryDAO.findAllotmentUserByAllotment(findById(id)).stream().forEach(allotmentUser -> allotmentHistoryDto.addUser(allotmentUser.getUser()));
+        allotmentUserRepositoryDAO.findAllotmentUserByAllotment(findById(id)).forEach(allotmentUser -> allotmentHistoryDto.addUser(allotmentUser.getUser()));
         return allotmentHistoryDto;
     }
 
