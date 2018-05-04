@@ -74,6 +74,5 @@ public class CommentaryServiceTest extends AuthenticationSetup {
         commentaryDto.setText("Test commentary");
 
         commentaryService.editCommentary(commentaryDto);
-
     }
 }

@@ -1,7 +1,7 @@
 package services;
 
-import dto.AllotmentDto;
-import dto.UserAllotmentDto;
+import dto.allotmentUser.AllotmentDto;
+import dto.allotmentUser.UserAllotmentDto;
 import model.dao.AllotmentRepositoryDAO;
 import model.dao.AllotmentUserRepositoryDAO;
 import model.entity.Allotment;
@@ -56,6 +56,7 @@ public class AllotmentService {
     private Allotment updateAllotment(AllotmentDto allotmentDto) {
         Allotment allotment = allotmentRepositoryDAO.getAllotmentById(allotmentDto.getIdAllotment());
         allotment.setBower(allotmentDto.getBower());
+        allotment.setSquaremeter(allotmentDto.getSquaremeter());
         allotment.setComposter(allotmentDto.getComposter());
         allotment.setTreeNumber(allotmentDto.getTreeNumber());
 

@@ -1,4 +1,4 @@
-package dto;
+package dto.allotmentUser;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

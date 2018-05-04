@@ -1,5 +1,6 @@
 package dto;
 
+import dto.allotmentUser.UserDto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import model.entity.User;

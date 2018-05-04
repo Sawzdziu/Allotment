@@ -101,7 +101,7 @@ public class Article {
         this.user = user;
     }
 
-    @OneToMany(mappedBy = "article")
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "article")
     public Collection<Commentary> getCommentaries() {
         return commentaries;
     }

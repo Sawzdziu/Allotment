@@ -1,6 +1,6 @@
 package services;
 
-import dto.UserAllotmentDto;
+import dto.allotmentUser.UserAllotmentDto;
 import model.dao.AllotmentRepositoryDAO;
 import model.dao.AllotmentUserRepositoryDAO;
 import model.dao.UserRepositoryDAO;
@@ -41,24 +41,45 @@ public class AllotmentUserService {
         return allotmentUserRepositoryDAO.findAllotmentsUsersActive().stream().map(allotmentUser -> new UserAllotmentDto(allotmentUser.getUser(), allotmentUser.getAllotment(), allotmentUser.getActive())).collect(Collectors.toList());
     }
 
-    private void addNewAllotmentUser(Allotment allotment, User user) {
+    protected List<AllotmentUser> findAllotmentUserByAllotmentId(Integer id) {
+        return allotmentUserRepositoryDAO.findAllotmentUserByAllotment(allotmentRepositoryDAO.getAllotmentById(id));
+    }
+
+    protected void addNewAllotmentUser(Integer allotmentId, User user) {
         AllotmentUser allotmentUser = new AllotmentUser();
         allotmentUser.setUser(user);
-        allotmentUser.setAllotment(allotment);
+        allotmentUser.setAllotment(getAllotmentById(allotmentId));
         allotmentUser.setActive(true);
+        persistAllotmentUser(allotmentUser);
+    }
+
+    protected void deactivateAllotmentUserByUserId(Integer idUser){
+        AllotmentUser allotmentUser = getAllotmentUser(idUser);
+        allotmentUser.setActive(false);
+        persistAllotmentUser(allotmentUser);
+    }
+
+    private AllotmentUser getAllotmentUser(Integer idUser){
+        return allotmentUserRepositoryDAO.findAllotmentUserByUser(userRepositoryDAO.findById(idUser));
     }
 
 
     /**
      * Method deactivates User and his connection with Allotment
      *
-     * @param allotment given allotment
+     * @param idAllotment id of given allotment
      */
-    private void deactivateAllotmentUser(Allotment allotment) {
-        allotmentUserRepositoryDAO.findHistoryUsers(allotment).stream().forEach(allotmentUser -> {
+    protected void deactivateAllotmentUserByAllotmentId(Integer idAllotment) {
+        findAllotmentUserByAllotmentId(idAllotment).forEach(allotmentUser -> {
             allotmentUser.setActive(false);
             allotmentUser.getUser().setActive(false);
+            persistAllotmentUser(allotmentUser);
+            userRepositoryDAO.save(allotmentUser.getUser());
         });
+    }
+
+    private Allotment getAllotmentById(Integer allotmentId) {
+        return allotmentRepositoryDAO.getAllotmentById(allotmentId);
     }
 
     private void persistAllotmentUser(AllotmentUser allotmentUser) {

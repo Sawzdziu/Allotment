@@ -18,4 +18,8 @@
     <article id_article="3" author="Author third" user_id="2" title="Title third" text="Third text"/>
     <article id_article="4" author="Author fourth" user_id="1" title="Title fourth" text="Fourth text"/>
 
+    <commentary id_commentary="1" author="First author" text="First commentary" article_id="1" user_id="1"/>
+    <commentary id_commentary="2" author="Second author" text="Second commentary" article_id="1" user_id="3"/>
+    <commentary id_commentary="3" author="Third author" text="Third commentary" article_id="2" user_id="2"/>
+
 </dataset>

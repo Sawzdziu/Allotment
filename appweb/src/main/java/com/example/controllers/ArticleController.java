@@ -35,7 +35,13 @@ public class ArticleController {
 
     @PutMapping("/edit/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public void editArticle(@RequestBody ArticleDto articleDto){
+    public void editArticle(@PathVariable Integer id, @RequestBody ArticleDto articleDto){
         articleService.editArticle(articleDto);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public void deleteArticle(@PathVariable Integer id){
+        articleService.deleteArticle(id);
     }
 }

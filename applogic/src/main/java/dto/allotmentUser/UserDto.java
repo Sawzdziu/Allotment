@@ -1,4 +1,4 @@
-package dto;
+package dto.allotmentUser;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class UserDto implements Serializable{
 
     private Integer idUser;
-    private boolean active;
+    private Boolean active;
     private String email;
     private String name;
     private String lastName;

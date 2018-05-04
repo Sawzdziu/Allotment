@@ -17,6 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import services.ArticleService;
+import services.CommentaryService;
 import services.TestServicesConfiguration;
 
 import java.util.List;
@@ -32,6 +33,9 @@ public class ArticleServiceTest extends AuthenticationSetup{
 
     @Autowired
     private ArticleService articleService;
+
+    @Autowired
+    private CommentaryService commentaryService;
 
     @Test
     public void getAllArticles(){
@@ -96,4 +100,22 @@ public class ArticleServiceTest extends AuthenticationSetup{
 
         articleService.editArticle(articleDto);
     }
+
+    @Test
+    public void deleteArticle(){
+        articleService.deleteArticle(1);
+        List<ArticleDto> articleDtoList = articleService.getAllArticles();
+
+        Assert.assertEquals("Size of all articles", 3, articleDtoList.size());
+        Assert.assertEquals("Title of first article", "Title second", articleDtoList.get(0).getTitle());
+        Assert.assertEquals("Text of first article", "Second text", articleDtoList.get(0).getText());
+        Assert.assertEquals("Author of first article", "Author second", articleDtoList.get(0).getAuthor());
+        Assert.assertEquals("Id of first article", new Integer(2), articleDtoList.get(0).getIdArticle());
+    }
+
+    @Test(expected = AccessDeniedException.class)
+    public void deleteArticleException(){
+        articleService.deleteArticle(2);
+    }
+
 }

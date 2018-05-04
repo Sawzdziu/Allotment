@@ -18,17 +18,17 @@ public class RoleRepositoryDAO {
     private RoleRepository roleRepository;
 
     @Transactional
-    public Role getRoleById(Integer id){
+    public Role getRoleById(Integer id) {
         return roleRepository.findByIdRole(id);
     }
 
     @Transactional
-    public List<Role> getAllRoles(){
+    public List<Role> getAllRoles() {
         return roleRepository.findAll();
     }
 
     @Transactional
-    public Role getByName(String name){
-        return roleRepository.findByName(name);
+    public Role getByName(String name) {
+        return roleRepository.findByName("ROLE_" + name);
     }
 }

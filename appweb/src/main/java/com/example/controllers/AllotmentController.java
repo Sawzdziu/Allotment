@@ -1,8 +1,8 @@
 package com.example.controllers;
 
-import dto.AllotmentDto;
+import dto.allotmentUser.AllotmentDto;
 import dto.AllotmentHistoryDto;
-import dto.UserAllotmentDto;
+import dto.allotmentUser.UserAllotmentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +10,6 @@ import services.AllotmentHistoryService;
 import services.AllotmentService;
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/allotment")
@@ -42,7 +41,7 @@ public class AllotmentController {
 
     @PutMapping("/edit/{id}")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public String editAllotment(@PathVariable("id") Integer id, AllotmentDto allotmentDto) {
+    public String editAllotment(@PathVariable("id") Integer id, @RequestBody AllotmentDto allotmentDto) {
         allotmentService.editAllotment(allotmentDto);
         return "Edited successfully";
     }

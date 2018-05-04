@@ -22,15 +22,15 @@ public class ArticleService {
     @Autowired
     private AuthenticationService authenticationService;
 
-    public List<ArticleDto> getAllArticles(){
+    public List<ArticleDto> getAllArticles() {
         return mapToArticleDto(articleRepositoryDAO.getAll());
     }
 
-    public List<ArticleDto> getLastFiveArticles(){
+    public List<ArticleDto> getLastFiveArticles() {
         return mapToArticleDto(articleRepositoryDAO.getLastFiveArticles());
     }
 
-    public void createNewArticle(ArticleDto articleDto){
+    public void createNewArticle(ArticleDto articleDto) {
         Article article = new Article();
         article.setText(articleDto.getText());
         article.setTitle(articleDto.getTitle());
@@ -44,32 +44,42 @@ public class ArticleService {
         persistArticle(article);
     }
 
-    public void editArticle(ArticleDto articleDto){
+    public void editArticle(ArticleDto articleDto) {
         Article article = articleRepositoryDAO.getArticlesById(articleDto.getIdArticle());
-        if(article.getUser().equals(getUser())){
+        if (article.getUser().equals(getUser())) {
             article.setDate(new Date());
             article.setTitle(articleDto.getTitle());
             article.setText(articleDto.getText());
 
             persistArticle(article);
-        }else{
+        } else {
             throw new AccessDeniedException("You can't modify someone else article!");
         }
     }
 
-    private String getAuthor(User user){
+    public void deleteArticle(Integer id) {
+        Article article = articleRepositoryDAO.getArticlesById(id);
+        if (article.getUser().equals(getUser())) {
+            articleRepositoryDAO.delete(article);
+        } else {
+            throw new AccessDeniedException("You can't modify someone else article!");
+        }
+    }
+
+
+    private String getAuthor(User user) {
         return user.getName() + " " + user.getLastName();
     }
 
-    private void persistArticle(Article article){
+    private void persistArticle(Article article) {
         articleRepositoryDAO.save(article);
     }
 
-    private User getUser(){
+    private User getUser() {
         return authenticationService.getUser();
     }
 
-    private List<ArticleDto> mapToArticleDto(List<Article> articleList){
+    private List<ArticleDto> mapToArticleDto(List<Article> articleList) {
         return articleList.stream().map(ArticleDto::new).collect(Collectors.toList());
     }
 }
