@@ -44,7 +44,7 @@ public class UserServiceTest {
         Assert.assertEquals("Name of obtained user", "Adam", userDto.getName());
         Assert.assertEquals("Phone of obtained user", "123456789", userDto.getPhone());
         Assert.assertTrue("If user is active", userDto.getActive());
-        Assert.assertEquals("Role of obtained user", "ADMIN", userDto.getRole());
+        Assert.assertEquals("Role of obtained user", "ROLE_ADMIN", userDto.getRole());
 
         userDto = userService.getUserById(2);
 
@@ -54,7 +54,7 @@ public class UserServiceTest {
         Assert.assertEquals("Name of obtained user", "Andrzej", userDto.getName());
         Assert.assertEquals("Phone of obtained user", "123452341", userDto.getPhone());
         Assert.assertTrue("If user is active", userDto.getActive());
-        Assert.assertEquals("Role of obtained user", "USER", userDto.getRole());
+        Assert.assertEquals("Role of obtained user", "ROLE_USER", userDto.getRole());
     }
 
     @Test
@@ -65,8 +65,9 @@ public class UserServiceTest {
         addEditUserDto.setName("Name");
         addEditUserDto.setPhone("123");
         addEditUserDto.setActive(true);
-        addEditUserDto.setRole("USER");
+        addEditUserDto.setRoleName("USER");
         addEditUserDto.setIdUser(1);
+        addEditUserDto.setAllotmentId(1);
 
         userService.editUser(addEditUserDto);
         UserDto userDto = userService.getUserById(1);
@@ -77,7 +78,7 @@ public class UserServiceTest {
         Assert.assertEquals("Name of obtained user", "Name", userDto.getName());
         Assert.assertEquals("Phone of obtained user", "123", userDto.getPhone());
         Assert.assertTrue("If user is active", userDto.getActive());
-        Assert.assertEquals("Role of obtained user", "ADMIN", userDto.getRole());
+        Assert.assertEquals("Role of obtained user", "ROLE_USER", userDto.getRole());
     }
 
     @Test
@@ -88,7 +89,7 @@ public class UserServiceTest {
         addEditUserDto.setName("NameNew");
         addEditUserDto.setPhone("12345");
         addEditUserDto.setAllotmentId(1);
-        addEditUserDto.setRole("USER");
+        addEditUserDto.setRoleName("USER");
 
         userService.addUser(addEditUserDto);
         UserDto userDto = userService.getUserById(4);
@@ -103,7 +104,7 @@ public class UserServiceTest {
         Assert.assertEquals("Name of obtained user", "NameNew", userDto.getName());
         Assert.assertEquals("Phone of obtained user", "12345", userDto.getPhone());
         Assert.assertTrue("If user is active", userDto.getActive());
-        Assert.assertEquals("Role of obtained user", "USER", userDto.getRole());
+        Assert.assertEquals("Role of obtained user", "ROLE_USER", userDto.getRole());
     }
 
     @Test(expected = EmptyResultDataAccessException.class)

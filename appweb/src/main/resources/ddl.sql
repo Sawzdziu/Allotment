@@ -5,7 +5,7 @@
 -- Dumped from database version 10.0
 -- Dumped by pg_dump version 10.1
 
--- Started on 2018-03-16 19:33:11
+-- Started on 2018-05-05 18:13:32
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -17,19 +17,18 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 4 (class 2615 OID 34531)
+-- TOC entry 4 (class 2615 OID 37144)
 -- Name: rodobronca; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
-DROP SCHEMA rodobronca CASCADE;
-
+DROP SCHEMA rodobronca CASCADE ;
 CREATE SCHEMA rodobronca;
 
 
 ALTER SCHEMA rodobronca OWNER TO postgres;
 
 --
--- TOC entry 2898 (class 0 OID 0)
+-- TOC entry 2897 (class 0 OID 0)
 -- Dependencies: 4
 -- Name: SCHEMA rodobronca; Type: COMMENT; Schema: -; Owner: postgres
 --
@@ -39,16 +38,16 @@ COMMENT ON SCHEMA rodobronca IS 'ROD Obronca allotments in Wroclaw.';
 
 --
 -- TOC entry 1 (class 3079 OID 12924)
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner:
 --
 
 CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2899 (class 0 OID 0)
+-- TOC entry 2898 (class 0 OID 0)
 -- Dependencies: 1
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner:
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
@@ -61,7 +60,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 196 (class 1259 OID 34532)
+-- TOC entry 196 (class 1259 OID 37145)
 -- Name: allotment; Type: TABLE; Schema: rodobronca; Owner: postgres
 --
 
@@ -78,23 +77,23 @@ CREATE TABLE allotment (
 ALTER TABLE allotment OWNER TO postgres;
 
 --
--- TOC entry 197 (class 1259 OID 34535)
+-- TOC entry 197 (class 1259 OID 37148)
 -- Name: allotment_id_allotment_seq; Type: SEQUENCE; Schema: rodobronca; Owner: postgres
 --
 
 CREATE SEQUENCE allotment_id_allotment_seq
     AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE allotment_id_allotment_seq OWNER TO postgres;
 
 --
--- TOC entry 2900 (class 0 OID 0)
+-- TOC entry 2899 (class 0 OID 0)
 -- Dependencies: 197
 -- Name: allotment_id_allotment_seq; Type: SEQUENCE OWNED BY; Schema: rodobronca; Owner: postgres
 --
@@ -103,22 +102,22 @@ ALTER SEQUENCE allotment_id_allotment_seq OWNED BY allotment.id_allotment;
 
 
 --
--- TOC entry 198 (class 1259 OID 34537)
+-- TOC entry 198 (class 1259 OID 37150)
 -- Name: allotment_user_id_allotment_user_seq; Type: SEQUENCE; Schema: rodobronca; Owner: postgres
 --
 
 CREATE SEQUENCE allotment_user_id_allotment_user_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    MAXVALUE 2147483647
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+MAXVALUE 2147483647
+CACHE 1;
 
 
 ALTER TABLE allotment_user_id_allotment_user_seq OWNER TO postgres;
 
 --
--- TOC entry 199 (class 1259 OID 34539)
+-- TOC entry 199 (class 1259 OID 37152)
 -- Name: allotment_user; Type: TABLE; Schema: rodobronca; Owner: postgres
 --
 
@@ -133,7 +132,7 @@ CREATE TABLE allotment_user (
 ALTER TABLE allotment_user OWNER TO postgres;
 
 --
--- TOC entry 200 (class 1259 OID 34543)
+-- TOC entry 200 (class 1259 OID 37156)
 -- Name: article; Type: TABLE; Schema: rodobronca; Owner: postgres
 --
 
@@ -150,23 +149,23 @@ CREATE TABLE article (
 ALTER TABLE article OWNER TO postgres;
 
 --
--- TOC entry 201 (class 1259 OID 34549)
+-- TOC entry 201 (class 1259 OID 37162)
 -- Name: article_id_article_seq; Type: SEQUENCE; Schema: rodobronca; Owner: postgres
 --
 
 CREATE SEQUENCE article_id_article_seq
     AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE article_id_article_seq OWNER TO postgres;
 
 --
--- TOC entry 2901 (class 0 OID 0)
+-- TOC entry 2900 (class 0 OID 0)
 -- Dependencies: 201
 -- Name: article_id_article_seq; Type: SEQUENCE OWNED BY; Schema: rodobronca; Owner: postgres
 --
@@ -175,7 +174,7 @@ ALTER SEQUENCE article_id_article_seq OWNED BY article.id_article;
 
 
 --
--- TOC entry 202 (class 1259 OID 34551)
+-- TOC entry 202 (class 1259 OID 37164)
 -- Name: commentary; Type: TABLE; Schema: rodobronca; Owner: postgres
 --
 
@@ -192,23 +191,23 @@ CREATE TABLE commentary (
 ALTER TABLE commentary OWNER TO postgres;
 
 --
--- TOC entry 203 (class 1259 OID 34557)
+-- TOC entry 203 (class 1259 OID 37170)
 -- Name: commentary_id_commentary_seq; Type: SEQUENCE; Schema: rodobronca; Owner: postgres
 --
 
 CREATE SEQUENCE commentary_id_commentary_seq
     AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE commentary_id_commentary_seq OWNER TO postgres;
 
 --
--- TOC entry 2902 (class 0 OID 0)
+-- TOC entry 2901 (class 0 OID 0)
 -- Dependencies: 203
 -- Name: commentary_id_commentary_seq; Type: SEQUENCE OWNED BY; Schema: rodobronca; Owner: postgres
 --
@@ -217,7 +216,7 @@ ALTER SEQUENCE commentary_id_commentary_seq OWNED BY commentary.id_commentary;
 
 
 --
--- TOC entry 204 (class 1259 OID 34559)
+-- TOC entry 204 (class 1259 OID 37172)
 -- Name: mail; Type: TABLE; Schema: rodobronca; Owner: postgres
 --
 
@@ -231,22 +230,22 @@ CREATE TABLE mail (
 ALTER TABLE mail OWNER TO postgres;
 
 --
--- TOC entry 205 (class 1259 OID 34562)
+-- TOC entry 205 (class 1259 OID 37175)
 -- Name: mail_id_mail_seq; Type: SEQUENCE; Schema: rodobronca; Owner: postgres
 --
 
 CREATE SEQUENCE mail_id_mail_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE mail_id_mail_seq OWNER TO postgres;
 
 --
--- TOC entry 2903 (class 0 OID 0)
+-- TOC entry 2902 (class 0 OID 0)
 -- Dependencies: 205
 -- Name: mail_id_mail_seq; Type: SEQUENCE OWNED BY; Schema: rodobronca; Owner: postgres
 --
@@ -255,7 +254,7 @@ ALTER SEQUENCE mail_id_mail_seq OWNED BY mail.id_mail;
 
 
 --
--- TOC entry 206 (class 1259 OID 34564)
+-- TOC entry 206 (class 1259 OID 37177)
 -- Name: mailbody; Type: TABLE; Schema: rodobronca; Owner: postgres
 --
 
@@ -268,7 +267,7 @@ CREATE TABLE mailbody (
 ALTER TABLE mailbody OWNER TO postgres;
 
 --
--- TOC entry 207 (class 1259 OID 34570)
+-- TOC entry 207 (class 1259 OID 37183)
 -- Name: payment; Type: TABLE; Schema: rodobronca; Owner: postgres
 --
 
@@ -285,23 +284,23 @@ CREATE TABLE payment (
 ALTER TABLE payment OWNER TO postgres;
 
 --
--- TOC entry 208 (class 1259 OID 34573)
+-- TOC entry 208 (class 1259 OID 37186)
 -- Name: payment_id_payment_seq; Type: SEQUENCE; Schema: rodobronca; Owner: postgres
 --
 
 CREATE SEQUENCE payment_id_payment_seq
     AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE payment_id_payment_seq OWNER TO postgres;
 
 --
--- TOC entry 2904 (class 0 OID 0)
+-- TOC entry 2903 (class 0 OID 0)
 -- Dependencies: 208
 -- Name: payment_id_payment_seq; Type: SEQUENCE OWNED BY; Schema: rodobronca; Owner: postgres
 --
@@ -310,7 +309,7 @@ ALTER SEQUENCE payment_id_payment_seq OWNED BY payment.id_payment;
 
 
 --
--- TOC entry 209 (class 1259 OID 34575)
+-- TOC entry 209 (class 1259 OID 37188)
 -- Name: recipient; Type: TABLE; Schema: rodobronca; Owner: postgres
 --
 
@@ -325,22 +324,22 @@ CREATE TABLE recipient (
 ALTER TABLE recipient OWNER TO postgres;
 
 --
--- TOC entry 210 (class 1259 OID 34578)
+-- TOC entry 210 (class 1259 OID 37191)
 -- Name: recipient_id_recipient_seq; Type: SEQUENCE; Schema: rodobronca; Owner: postgres
 --
 
 CREATE SEQUENCE recipient_id_recipient_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE recipient_id_recipient_seq OWNER TO postgres;
 
 --
--- TOC entry 2905 (class 0 OID 0)
+-- TOC entry 2904 (class 0 OID 0)
 -- Dependencies: 210
 -- Name: recipient_id_recipient_seq; Type: SEQUENCE OWNED BY; Schema: rodobronca; Owner: postgres
 --
@@ -349,7 +348,7 @@ ALTER SEQUENCE recipient_id_recipient_seq OWNED BY recipient.id_recipient;
 
 
 --
--- TOC entry 211 (class 1259 OID 34580)
+-- TOC entry 211 (class 1259 OID 37193)
 -- Name: role; Type: TABLE; Schema: rodobronca; Owner: postgres
 --
 
@@ -362,23 +361,23 @@ CREATE TABLE role (
 ALTER TABLE role OWNER TO postgres;
 
 --
--- TOC entry 212 (class 1259 OID 34583)
+-- TOC entry 212 (class 1259 OID 37196)
 -- Name: role_id_role_seq; Type: SEQUENCE; Schema: rodobronca; Owner: postgres
 --
 
 CREATE SEQUENCE role_id_role_seq
     AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE role_id_role_seq OWNER TO postgres;
 
 --
--- TOC entry 2906 (class 0 OID 0)
+-- TOC entry 2905 (class 0 OID 0)
 -- Dependencies: 212
 -- Name: role_id_role_seq; Type: SEQUENCE OWNED BY; Schema: rodobronca; Owner: postgres
 --
@@ -387,7 +386,7 @@ ALTER SEQUENCE role_id_role_seq OWNED BY role.id_role;
 
 
 --
--- TOC entry 213 (class 1259 OID 34585)
+-- TOC entry 213 (class 1259 OID 37198)
 -- Name: user; Type: TABLE; Schema: rodobronca; Owner: postgres
 --
 
@@ -407,23 +406,23 @@ CREATE TABLE "user" (
 ALTER TABLE "user" OWNER TO postgres;
 
 --
--- TOC entry 214 (class 1259 OID 34591)
+-- TOC entry 214 (class 1259 OID 37204)
 -- Name: user_id_user_seq; Type: SEQUENCE; Schema: rodobronca; Owner: postgres
 --
 
 CREATE SEQUENCE user_id_user_seq
     AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
+START WITH 1
+INCREMENT BY 1
+NO MINVALUE
+NO MAXVALUE
+CACHE 1;
 
 
 ALTER TABLE user_id_user_seq OWNER TO postgres;
 
 --
--- TOC entry 2907 (class 0 OID 0)
+-- TOC entry 2906 (class 0 OID 0)
 -- Dependencies: 214
 -- Name: user_id_user_seq; Type: SEQUENCE OWNED BY; Schema: rodobronca; Owner: postgres
 --
@@ -432,7 +431,7 @@ ALTER SEQUENCE user_id_user_seq OWNED BY "user".id_user;
 
 
 --
--- TOC entry 2726 (class 2604 OID 34593)
+-- TOC entry 2726 (class 2604 OID 37206)
 -- Name: allotment id_allotment; Type: DEFAULT; Schema: rodobronca; Owner: postgres
 --
 
@@ -440,7 +439,7 @@ ALTER TABLE ONLY allotment ALTER COLUMN id_allotment SET DEFAULT nextval('allotm
 
 
 --
--- TOC entry 2728 (class 2604 OID 34594)
+-- TOC entry 2728 (class 2604 OID 37207)
 -- Name: article id_article; Type: DEFAULT; Schema: rodobronca; Owner: postgres
 --
 
@@ -448,7 +447,7 @@ ALTER TABLE ONLY article ALTER COLUMN id_article SET DEFAULT nextval('article_id
 
 
 --
--- TOC entry 2729 (class 2604 OID 34595)
+-- TOC entry 2729 (class 2604 OID 37208)
 -- Name: commentary id_commentary; Type: DEFAULT; Schema: rodobronca; Owner: postgres
 --
 
@@ -456,7 +455,7 @@ ALTER TABLE ONLY commentary ALTER COLUMN id_commentary SET DEFAULT nextval('comm
 
 
 --
--- TOC entry 2730 (class 2604 OID 34596)
+-- TOC entry 2730 (class 2604 OID 37209)
 -- Name: mail id_mail; Type: DEFAULT; Schema: rodobronca; Owner: postgres
 --
 
@@ -464,7 +463,7 @@ ALTER TABLE ONLY mail ALTER COLUMN id_mail SET DEFAULT nextval('mail_id_mail_seq
 
 
 --
--- TOC entry 2731 (class 2604 OID 34597)
+-- TOC entry 2731 (class 2604 OID 37210)
 -- Name: payment id_payment; Type: DEFAULT; Schema: rodobronca; Owner: postgres
 --
 
@@ -472,7 +471,7 @@ ALTER TABLE ONLY payment ALTER COLUMN id_payment SET DEFAULT nextval('payment_id
 
 
 --
--- TOC entry 2732 (class 2604 OID 34598)
+-- TOC entry 2732 (class 2604 OID 37211)
 -- Name: recipient id_recipient; Type: DEFAULT; Schema: rodobronca; Owner: postgres
 --
 
@@ -480,7 +479,7 @@ ALTER TABLE ONLY recipient ALTER COLUMN id_recipient SET DEFAULT nextval('recipi
 
 
 --
--- TOC entry 2733 (class 2604 OID 34599)
+-- TOC entry 2733 (class 2604 OID 37212)
 -- Name: role id_role; Type: DEFAULT; Schema: rodobronca; Owner: postgres
 --
 
@@ -488,7 +487,7 @@ ALTER TABLE ONLY role ALTER COLUMN id_role SET DEFAULT nextval('role_id_role_seq
 
 
 --
--- TOC entry 2734 (class 2604 OID 34600)
+-- TOC entry 2734 (class 2604 OID 37213)
 -- Name: user id_user; Type: DEFAULT; Schema: rodobronca; Owner: postgres
 --
 
@@ -496,7 +495,7 @@ ALTER TABLE ONLY "user" ALTER COLUMN id_user SET DEFAULT nextval('user_id_user_s
 
 
 --
--- TOC entry 2736 (class 2606 OID 34602)
+-- TOC entry 2736 (class 2606 OID 37215)
 -- Name: allotment allotment_pkey; Type: CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -505,7 +504,7 @@ ALTER TABLE ONLY allotment
 
 
 --
--- TOC entry 2738 (class 2606 OID 34604)
+-- TOC entry 2738 (class 2606 OID 37217)
 -- Name: allotment_user allotment_user_pkey; Type: CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -514,7 +513,7 @@ ALTER TABLE ONLY allotment_user
 
 
 --
--- TOC entry 2744 (class 2606 OID 34606)
+-- TOC entry 2742 (class 2606 OID 37219)
 -- Name: article article_pkey; Type: CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -523,7 +522,7 @@ ALTER TABLE ONLY article
 
 
 --
--- TOC entry 2746 (class 2606 OID 34608)
+-- TOC entry 2744 (class 2606 OID 37221)
 -- Name: commentary commentary_pkey; Type: CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -532,7 +531,7 @@ ALTER TABLE ONLY commentary
 
 
 --
--- TOC entry 2748 (class 2606 OID 34610)
+-- TOC entry 2746 (class 2606 OID 37223)
 -- Name: mail mail_pkey; Type: CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -541,7 +540,7 @@ ALTER TABLE ONLY mail
 
 
 --
--- TOC entry 2750 (class 2606 OID 34612)
+-- TOC entry 2748 (class 2606 OID 37225)
 -- Name: mailbody mailbody_pkey; Type: CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -550,7 +549,7 @@ ALTER TABLE ONLY mailbody
 
 
 --
--- TOC entry 2752 (class 2606 OID 34614)
+-- TOC entry 2750 (class 2606 OID 37227)
 -- Name: payment payment_pkey; Type: CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -559,7 +558,7 @@ ALTER TABLE ONLY payment
 
 
 --
--- TOC entry 2754 (class 2606 OID 34616)
+-- TOC entry 2752 (class 2606 OID 37229)
 -- Name: recipient recipient_pkey; Type: CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -568,7 +567,7 @@ ALTER TABLE ONLY recipient
 
 
 --
--- TOC entry 2756 (class 2606 OID 34618)
+-- TOC entry 2754 (class 2606 OID 37231)
 -- Name: role role_pkey; Type: CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -577,7 +576,7 @@ ALTER TABLE ONLY role
 
 
 --
--- TOC entry 2740 (class 2606 OID 34620)
+-- TOC entry 2740 (class 2606 OID 37233)
 -- Name: allotment_user unique_allotmentId_userId; Type: CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -586,16 +585,7 @@ ALTER TABLE ONLY allotment_user
 
 
 --
--- TOC entry 2742 (class 2606 OID 34622)
--- Name: allotment_user unique_user_id; Type: CONSTRAINT; Schema: rodobronca; Owner: postgres
---
-
-ALTER TABLE ONLY allotment_user
-    ADD CONSTRAINT unique_user_id UNIQUE (user_id);
-
-
---
--- TOC entry 2758 (class 2606 OID 34624)
+-- TOC entry 2756 (class 2606 OID 37237)
 -- Name: user unique_username; Type: CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -604,7 +594,7 @@ ALTER TABLE ONLY "user"
 
 
 --
--- TOC entry 2760 (class 2606 OID 34626)
+-- TOC entry 2758 (class 2606 OID 37239)
 -- Name: user user_pkey; Type: CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -613,7 +603,7 @@ ALTER TABLE ONLY "user"
 
 
 --
--- TOC entry 2764 (class 2606 OID 34627)
+-- TOC entry 2762 (class 2606 OID 37240)
 -- Name: commentary fk4gnkpacv6jppejtkqdef1fkq4; Type: FK CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -622,7 +612,7 @@ ALTER TABLE ONLY commentary
 
 
 --
--- TOC entry 2766 (class 2606 OID 34632)
+-- TOC entry 2764 (class 2606 OID 37245)
 -- Name: mail fk4pothb0cit4co52nqkurg2u3o; Type: FK CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -631,7 +621,7 @@ ALTER TABLE ONLY mail
 
 
 --
--- TOC entry 2771 (class 2606 OID 34637)
+-- TOC entry 2770 (class 2606 OID 37250)
 -- Name: user fk84qlpfci484r1luck11eno6ec; Type: FK CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -640,7 +630,7 @@ ALTER TABLE ONLY "user"
 
 
 --
--- TOC entry 2767 (class 2606 OID 34642)
+-- TOC entry 2766 (class 2606 OID 37255)
 -- Name: mailbody fk_mail_id; Type: FK CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -649,7 +639,7 @@ ALTER TABLE ONLY mailbody
 
 
 --
--- TOC entry 2769 (class 2606 OID 34647)
+-- TOC entry 2768 (class 2606 OID 37260)
 -- Name: recipient fkacrhlwys4a8d93dfc5yds7o3m; Type: FK CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -658,7 +648,7 @@ ALTER TABLE ONLY recipient
 
 
 --
--- TOC entry 2768 (class 2606 OID 34652)
+-- TOC entry 2767 (class 2606 OID 37265)
 -- Name: payment fkaurylb3qlklrf2f474a0f2nfr; Type: FK CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -667,7 +657,7 @@ ALTER TABLE ONLY payment
 
 
 --
--- TOC entry 2761 (class 2606 OID 34657)
+-- TOC entry 2759 (class 2606 OID 37270)
 -- Name: allotment_user fkbvk384t791jqi1lwi0u91pce0; Type: FK CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -676,7 +666,7 @@ ALTER TABLE ONLY allotment_user
 
 
 --
--- TOC entry 2763 (class 2606 OID 34662)
+-- TOC entry 2761 (class 2606 OID 37275)
 -- Name: article fkkpi7de60p3npqbdh8yi0taf7x; Type: FK CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -685,7 +675,7 @@ ALTER TABLE ONLY article
 
 
 --
--- TOC entry 2765 (class 2606 OID 34667)
+-- TOC entry 2763 (class 2606 OID 37280)
 -- Name: commentary fklpgd0p65bfd9syhlalvq6do4x; Type: FK CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -694,7 +684,7 @@ ALTER TABLE ONLY commentary
 
 
 --
--- TOC entry 2762 (class 2606 OID 34672)
+-- TOC entry 2760 (class 2606 OID 37285)
 -- Name: allotment_user fkmiq081vb3av0yy05xf60gg6gr; Type: FK CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -703,7 +693,7 @@ ALTER TABLE ONLY allotment_user
 
 
 --
--- TOC entry 2770 (class 2606 OID 34677)
+-- TOC entry 2769 (class 2606 OID 37290)
 -- Name: recipient fkq8i5u9sa3xreiqnouecqty4to; Type: FK CONSTRAINT; Schema: rodobronca; Owner: postgres
 --
 
@@ -711,7 +701,16 @@ ALTER TABLE ONLY recipient
     ADD CONSTRAINT fkq8i5u9sa3xreiqnouecqty4to FOREIGN KEY (mail_id) REFERENCES mail(id_mail);
 
 
--- Completed on 2018-03-16 19:33:11
+--
+-- TOC entry 2765 (class 2606 OID 37327)
+-- Name: mailbody fktm5qtbfktx18dq48aawjijys2; Type: FK CONSTRAINT; Schema: rodobronca; Owner: postgres
+--
+
+ALTER TABLE ONLY mailbody
+    ADD CONSTRAINT fktm5qtbfktx18dq48aawjijys2 FOREIGN KEY (mail_id) REFERENCES mail(id_mail);
+
+
+-- Completed on 2018-05-05 18:13:33
 
 --
 -- PostgreSQL database dump complete

@@ -68,7 +68,7 @@ public class PaymentService {
     }
 
     private AllotmentUser getAllotmentUser(Integer idUser){
-        return allotmentUserRepositoryDAO.findAllotmentUserByUser(userRepositoryDAO.findById(idUser));
+        return allotmentUserRepositoryDAO.findAllotmentUserByUserAndActiveTrue(userRepositoryDAO.findById(idUser));
     }
 
     private List<PaymentDto> mapToPaymentDto(List<Payment> payments){

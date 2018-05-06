@@ -33,6 +33,12 @@ public class AllotmentController {
         return allotmentService.getAllActiveAllotments();
     }
 
+    @GetMapping("/getAllFreeAllotments")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public List<UserAllotmentDto> getAllFreeAllotments() {
+        return allotmentService.getAllNotOccupiedAllotments();
+    }
+
     @GetMapping("/getAllotmentHistory/{id}")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public AllotmentHistoryDto getAllotmentHistory(@PathVariable("id") Integer id) {

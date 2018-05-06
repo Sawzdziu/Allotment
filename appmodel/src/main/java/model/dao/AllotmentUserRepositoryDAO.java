@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -23,13 +24,18 @@ public class AllotmentUserRepositoryDAO {
     }
 
     @Transactional
-    public AllotmentUser findAllotmentUserByUser(User user) {
+    public List<AllotmentUser> findAllotmentUserByUser(User user) {
         return allotmentUserRepository.findByUser(user).orElseThrow(NoResultException::new);
     }
 
     @Transactional
+    public AllotmentUser findAllotmentUserByUserAndActiveTrue(User user) {
+        return allotmentUserRepository.findByUserAndActiveTrue(user).orElse(null);
+    }
+
+    @Transactional
     public List<AllotmentUser> findAllotmentUserByAllotment(Allotment allotment) {
-        return allotmentUserRepository.findByAllotment(allotment).orElseThrow(NoResultException::new);
+        return allotmentUserRepository.findByAllotment(allotment).orElse(Collections.emptyList());
     }
 
     @Transactional
@@ -45,6 +51,11 @@ public class AllotmentUserRepositoryDAO {
     @Transactional
     public List<AllotmentUser> findHistoryUsers(Allotment allotment){
         return allotmentUserRepository.findAllByAllotmentAndActiveFalse(allotment).orElseThrow(NoResultException::new);
+    }
+
+    @Transactional
+    public AllotmentUser findByUserAndAllotment(User user, Allotment allotment){
+        return allotmentUserRepository.findByUserAndAllotment(user, allotment).orElseThrow(NoResultException::new);
     }
 
     @Transactional

@@ -27,6 +27,10 @@ public class AllotmentService {
         return getAllAllotment();
     }
 
+    public List<UserAllotmentDto> getAllNotOccupiedAllotments(){
+        return getAllFreeAllotments();
+    }
+
     public List<UserAllotmentDto> getAllActiveAllotments() {
         return getAllActiveAllotment();
     }
@@ -64,10 +68,10 @@ public class AllotmentService {
     }
 
     /**
-     * Function creates UserAllotmentDto for all allotments in application. Required for acknowledge if allotment is active or not.
-     * @return concatenation of allotments and allotment-user table
+     * Function returns all allotments not occupied by anyone
+     * @return list of free allotments
      */
-    private List<UserAllotmentDto> mapAllotmentToUserAllotment() {
+    private List<UserAllotmentDto> getAllFreeAllotments(){
         List<AllotmentUser> allotmentUserList = allotmentUserRepositoryDAO.findAllotmentsUsersActive();
         List<UserAllotmentDto> resultList = new LinkedList<>();
         allotmentRepositoryDAO.findAll().forEach(allotment -> {
@@ -75,7 +79,17 @@ public class AllotmentService {
                 resultList.add(new UserAllotmentDto(allotment, false));
             }
         });
-        resultList.addAll(mapToAllotmentUserDto(allotmentUserList));
+        return resultList;
+    }
+
+    /**
+     * Function creates UserAllotmentDto for all allotments in application. Required for acknowledge if allotment is active or not.
+     * @return concatenation of allotments and allotment-user table
+     */
+    private List<UserAllotmentDto> mapAllotmentToUserAllotment() {
+        List<UserAllotmentDto> resultList;
+        resultList = getAllFreeAllotments();
+        resultList.addAll(getAllActiveAllotment());
         return resultList;
     }
 

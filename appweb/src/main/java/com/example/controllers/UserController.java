@@ -47,6 +47,12 @@ public class UserController {
         return allotmentUserService.getAllAllotmentUserDto();
     }
 
+    @GetMapping("/getActiveUser")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public UserAllotmentDto getActiveUser(){
+        return allotmentUserService.getActiveUser();
+    }
+
     @GetMapping("/getAllActiveUserAllotment")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public List<UserAllotmentDto> getAllActiveUserAllotment() {
@@ -63,7 +69,7 @@ public class UserController {
 
     @PutMapping("/edit/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public String editUser(@PathVariable("id") Integer id, AddEditUserDto addEditUserDto) {
+    public String editUser(@PathVariable("id") Integer id, @RequestBody AddEditUserDto addEditUserDto) {
         userService.editUser(addEditUserDto);
         return "User edited successfully";
     }

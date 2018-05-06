@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-    <role id_role="1" name="ADMIN"/>
-    <role id_role="2" name="USER"/>
+    <role id_role="1" name="ROLE_ADMIN"/>
+    <role id_role="2" name="ROLE_USER"/>
 
     <user id_user="1" name="Adam" last_name="Kowalski" password="Test" email="a.kowalski@wp.pl" phone="123456789"
           is_active="true" role_id="1"/>

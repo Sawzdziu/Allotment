@@ -41,7 +41,7 @@ public class UserRepositoryDAOTest {
 
     @Test
     public void testFindAdmin(){
-        Assert.assertEquals("Find user with admin privileges", "Kowalski", userRepositoryDAO.findByRole(roleRepositoryDAO.getByName("Admin")).get(0).getLastName());
+        Assert.assertEquals("Find user with admin privileges", "Kowalski", userRepositoryDAO.findByRole(roleRepositoryDAO.getByName("ADMIN")).get(0).getLastName());
     }
 
     @Test(expected = EmptyResultDataAccessException.class)

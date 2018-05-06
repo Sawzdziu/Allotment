@@ -8,10 +8,12 @@ import model.entity.Role;
 import model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,11 +39,7 @@ public class UserService {
     }
 
     public void editUser(AddEditUserDto addEditUserDto) {
-        if (addEditUserDto.getActive()) {
-            persistUser(updateUser(addEditUserDto));
-        } else {
-            deactivateUser(addEditUserDto);
-        }
+        persistUser(updateUser(addEditUserDto));
     }
 
     public void addUser(AddEditUserDto addEditUserDto) {
@@ -59,29 +57,47 @@ public class UserService {
     private void createUser(AddEditUserDto addEditUserDto) {
         User user = new User();
         user.setActive(true);
+        user.setUsername(addEditUserDto.getUsername());
         user.setEmail(addEditUserDto.getEmail());
         user.setLastName(addEditUserDto.getLastName());
         user.setName(addEditUserDto.getName());
         user.setPhone(addEditUserDto.getPhone());
-        user.setRole(getUserRole(addEditUserDto.getName()));
+        user.setRole(getUserRole(addEditUserDto.getRoleName()));
         user.setPassword(encodedPassword());
 
         persistUser(user);
 
-        deactivateAllotmentAndUser(addEditUserDto.getAllotmentId());
-        createAllotmentUser(user, addEditUserDto.getAllotmentId());
-
+        if (addEditUserDto.getAllotmentId() != 0) {
+            deactivateAllAllotmentUserByAllotmentId(addEditUserDto.getAllotmentId());
+            createAllotmentUser(user, addEditUserDto.getAllotmentId());
+        }
     }
 
     private User updateUser(AddEditUserDto addEditUserDto) {
         User user = userRepositoryDAO.findById(addEditUserDto.getIdUser());
         user.setActive(true);
+        user.setUsername(addEditUserDto.getUsername());
         user.setEmail(addEditUserDto.getEmail());
         user.setLastName(addEditUserDto.getLastName());
         user.setName(addEditUserDto.getName());
         user.setPhone(addEditUserDto.getPhone());
+        user.setRole(getUserRole(addEditUserDto.getRoleName()));
 
-        return user;
+        if (addEditUserDto.getAllotmentId() == 0 || addEditUserDto.getAllotmentId().equals(actualAllotment(user.getIdUser()))) {
+            return user;
+        } else {
+            //Deactivates allotment connections which user has before
+            deactivateAllotmentUserByUserId(user.getIdUser());
+            //Deactivates all connections for specified allotment
+            deactivateAllotmentUserByAllotmentId(addEditUserDto.getAllotmentId(), user);
+
+            updateAllotmentUser(user, addEditUserDto.getAllotmentId());
+            return user;
+        }
+    }
+
+    private Integer actualAllotment(Integer idUser) {
+        return allotmentUserService.getAllotmentUserAndActiveTrue(idUser).getAllotment().getIdAllotment();
     }
 
     private void deactivateUser(AddEditUserDto addEditUserDto) {
@@ -92,21 +108,29 @@ public class UserService {
         user.setName(addEditUserDto.getName());
         user.setPhone(addEditUserDto.getPhone());
 
-        deactivateAllotemntUser(addEditUserDto.getAllotmentId());
+        deactivateAllotmentUserByUserId(addEditUserDto.getAllotmentId());
 
         persistUser(user);
+    }
+
+    private void updateAllotmentUser(User user, Integer allotmentId) {
+        allotmentUserService.updateAllotmentUser(allotmentId, user);
     }
 
     private void createAllotmentUser(User user, Integer allotmentId) {
         allotmentUserService.addNewAllotmentUser(allotmentId, user);
     }
 
-    private void deactivateAllotemntUser(Integer idUser) {
+    private void deactivateAllotmentUserByUserId(Integer idUser) {
         allotmentUserService.deactivateAllotmentUserByUserId(idUser);
     }
 
-    private void deactivateAllotmentAndUser(Integer allotmentId) {
-        allotmentUserService.deactivateAllotmentUserByAllotmentId(allotmentId);
+    private void deactivateAllAllotmentUserByAllotmentId(Integer allotmentId) {
+        allotmentUserService.deactivateAllAllotmentUserByAllotmentId(allotmentId);
+    }
+
+    private void deactivateAllotmentUserByAllotmentId(Integer allotmentId, User user) {
+        allotmentUserService.deactivateAllotmentUserByAllotmentId(allotmentId, user);
     }
 
     private List<UserDto> mapToUserDto(List<User> users) {
@@ -119,10 +143,6 @@ public class UserService {
 
     private Role getUserRole(String name) {
         return roleRepositoryDAO.getByName(name);
-    }
-
-    private Role getRoleById(Integer id) {
-        return roleRepositoryDAO.getRoleById(id);
     }
 
     private String encodedPassword() {

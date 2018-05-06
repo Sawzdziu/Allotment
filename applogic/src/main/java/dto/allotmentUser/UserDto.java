@@ -14,6 +14,7 @@ public class UserDto implements Serializable{
     private Boolean active;
     private String email;
     private String name;
+    private String username;
     private String lastName;
     private String phone;
     private String role;
@@ -24,6 +25,7 @@ public class UserDto implements Serializable{
         this.email = user.getEmail();
         this.name = user.getName();
         this.lastName = user.getLastName();
+        this.username = user.getUsername();
         this.phone = user.getPhone();
         this.role = user.getRole().getName();
     }

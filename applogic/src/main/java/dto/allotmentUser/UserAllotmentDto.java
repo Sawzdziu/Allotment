@@ -30,6 +30,10 @@ public class UserAllotmentDto {
         this.active = active;
     }
 
+    public UserAllotmentDto(User user){
+        this.userDto = new UserDto(user);
+    }
+
     public UserAllotmentDto(Allotment allotment, Boolean active) {
         this.allotmentDto = new AllotmentDto(allotment);
         this.active = active;
