@@ -5,6 +5,7 @@ import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseTearDown;
 import dto.payment.AddPaymentDto;
+import dto.payment.EditPaymentDto;
 import dto.payment.PaymentDto;
 import org.junit.Assert;
 import org.junit.Test;
@@ -53,20 +54,19 @@ public class PaymentServiceTest {
 
     @Test
     public void editPayment() {
-        PaymentDto paymentDto = new PaymentDto();
-        paymentDto.setIdPayment(1);
-        paymentDto.setCharge(100);
-        paymentDto.setTitle("Test payment");
-        paymentDto.setPaid(true);
+        EditPaymentDto editPaymentDto = new EditPaymentDto();
+        editPaymentDto.setIdPayment(1);
+        editPaymentDto.setCharge(100);
+        editPaymentDto.setTitle("Test payment");
+        editPaymentDto.setUserId(1);
 
-        paymentService.updatePayment(paymentDto);
+        paymentService.updatePayment(editPaymentDto);
         List<PaymentDto> paymentDtoList = paymentService.getAllPayments();
 
         Assert.assertEquals("Size of all payments", 6, paymentDtoList.size());
         Assert.assertEquals("Id of first payment", new Integer(1), paymentDtoList.get(0).getIdPayment());
         Assert.assertEquals("Title of added payment", "Test payment", paymentDtoList.get(0).getTitle());
         Assert.assertEquals("Charge of added payment", new Integer(100), paymentDtoList.get(0).getCharge());
-        Assert.assertTrue("Payment is paid", paymentDtoList.get(0).getPaid());
         Assert.assertEquals("User id of added payment", new Integer(1), paymentDtoList.get(0).getUserDto().getIdUser());
         Assert.assertEquals("Allotment id of added payment", new Integer(1), paymentDtoList.get(0).getAllotmentDto().getIdAllotment());
     }

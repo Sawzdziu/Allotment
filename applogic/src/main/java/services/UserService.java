@@ -46,6 +46,15 @@ public class UserService {
         createUser(addEditUserDto);
     }
 
+    public void deactivateUser(Integer id){
+        User user = userRepositoryDAO.findById(id);
+        user.setActive(false);
+
+        deactivateAllotmentUserByUserId(id);
+
+        persistUser(user);
+    }
+
     public List<UserDto> getAllUsers() {
         return mapToUserDto(userRepositoryDAO.findAll());
     }
@@ -98,19 +107,6 @@ public class UserService {
 
     private Integer actualAllotment(Integer idUser) {
         return allotmentUserService.getAllotmentUserAndActiveTrue(idUser).getAllotment().getIdAllotment();
-    }
-
-    private void deactivateUser(AddEditUserDto addEditUserDto) {
-        User user = userRepositoryDAO.findById(addEditUserDto.getIdUser());
-        user.setActive(false);
-        user.setEmail(addEditUserDto.getEmail());
-        user.setLastName(addEditUserDto.getLastName());
-        user.setName(addEditUserDto.getName());
-        user.setPhone(addEditUserDto.getPhone());
-
-        deactivateAllotmentUserByUserId(addEditUserDto.getAllotmentId());
-
-        persistUser(user);
     }
 
     private void updateAllotmentUser(User user, Integer allotmentId) {

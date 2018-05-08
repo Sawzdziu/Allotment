@@ -17,19 +17,19 @@ public class ArticleController {
 
     @GetMapping("/getLast")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public List<ArticleDto> getLastFiveMails(){
+    public List<ArticleDto> getLastFiveArticles(){
         return articleService.getLastFiveArticles();
     }
 
     @GetMapping("/getAll")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public List<ArticleDto> getAllMails(){
+    public List<ArticleDto> getAllArticles(){
         return articleService.getAllArticles();
     }
 
     @PostMapping("/new")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public void createNewAritcle(@RequestBody ArticleDto articleDto){
+    public void createNewArticle(@RequestBody ArticleDto articleDto){
         articleService.createNewArticle(articleDto);
     }
 

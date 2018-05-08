@@ -73,4 +73,11 @@ public class UserController {
         userService.editUser(addEditUserDto);
         return "User edited successfully";
     }
+
+    @PutMapping("/deactivate/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public String deactivateUser(@PathVariable("id") Integer id) {
+        userService.deactivateUser(id);
+        return "User deactivated successfully";
+    }
 }

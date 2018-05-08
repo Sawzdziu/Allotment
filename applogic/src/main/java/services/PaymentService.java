@@ -1,10 +1,13 @@
 package services;
 
 import dto.payment.AddPaymentDto;
+import dto.payment.EditPaymentDto;
 import dto.payment.PaymentDto;
+import model.dao.AllotmentRepositoryDAO;
 import model.dao.AllotmentUserRepositoryDAO;
 import model.dao.PaymentRepositoryDAO;
 import model.dao.UserRepositoryDAO;
+import model.entity.Allotment;
 import model.entity.AllotmentUser;
 import model.entity.Payment;
 import model.entity.User;
@@ -29,6 +32,9 @@ public class PaymentService {
     private UserRepositoryDAO userRepositoryDAO;
 
     @Autowired
+    private AllotmentRepositoryDAO allotmentRepositoryDAO;
+
+    @Autowired
     private AllotmentUserRepositoryDAO allotmentUserRepositoryDAO;
 
     public List<PaymentDto> getAllPayments(){
@@ -50,17 +56,31 @@ public class PaymentService {
         persistPayment(payment);
     }
 
-    public void updatePayment(PaymentDto paymentDto){
-        Payment payment = paymentRepositoryDAO.getByPaymentId(paymentDto.getIdPayment());
-        payment.setTitle(paymentDto.getTitle());
-        payment.setPaid(paymentDto.getPaid());
-        payment.setCharge(paymentDto.getCharge());
+    public void confirmPayment(Integer id){
+        Payment payment = paymentRepositoryDAO.getByPaymentId(id);
+        payment.setPaid(true);
+
+        persistPayment(payment);
+    }
+
+    public void updatePayment(EditPaymentDto editPaymentDto){
+        Payment payment = paymentRepositoryDAO.getByPaymentId(editPaymentDto.getIdPayment());
+        payment.setTitle(editPaymentDto.getTitle());
+        payment.setCharge(editPaymentDto.getCharge());
 
         persistPayment(payment);
     }
 
     public void deletePayment(Integer id){
         paymentRepositoryDAO.delete(id);
+    }
+
+    private User getUserById(Integer idUser){
+        return userRepositoryDAO.findById(idUser);
+    }
+
+    private Allotment getAllotmentById(Integer idAllotment){
+        return allotmentRepositoryDAO.getAllotmentById(idAllotment);
     }
 
     private void persistPayment(Payment payment){

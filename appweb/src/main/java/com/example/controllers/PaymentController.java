@@ -1,6 +1,7 @@
 package com.example.controllers;
 
 import dto.payment.AddPaymentDto;
+import dto.payment.EditPaymentDto;
 import dto.payment.PaymentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,19 +31,29 @@ public class PaymentController {
 
     @PostMapping("/new")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public void createPayment(@RequestBody AddPaymentDto addPaymentDto){
+    public String createPayment(@RequestBody AddPaymentDto addPaymentDto){
         paymentService.createPayment(addPaymentDto);
+        return "Payment added successfully!";
+    }
+
+    @PutMapping("/confirmPayment/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public String updatePayment(@PathVariable Integer id){
+        paymentService.confirmPayment(id);
+        return "Payment confirmed!";
     }
 
     @PutMapping("/update")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public void updatePayment(@RequestBody PaymentDto paymentDto){
-        paymentService.updatePayment(paymentDto);
+    public String updatePayment(@RequestBody EditPaymentDto editPaymentDto){
+        paymentService.updatePayment(editPaymentDto);
+        return "Payment updated successfully!";
     }
 
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasAnyRole('ADMIN')")
-    public void deletePayment(@PathVariable Integer id){
+    public String deletePayment(@PathVariable Integer id){
         paymentService.deletePayment(id);
+        return "Payment deleted successfully!";
     }
 }
