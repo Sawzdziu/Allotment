@@ -17,6 +17,7 @@ public class ArticleDto {
 
     private Integer idArticle;
     private String author;
+    private String username;
     private Date date;
     private String title;
     private String text;
@@ -28,6 +29,7 @@ public class ArticleDto {
         this.date = article.getDate();
         this.title = article.getTitle();
         this.text = article.getText();
+        this.username = article.getUser().getUsername();
         this.commentaryDtoList = new LinkedList<>();
     }
 }

@@ -12,6 +12,7 @@ public class CommentaryDto {
 
     private Integer idCommentary;
     private String author;
+    private String username;
     private String text;
     private Integer idArticle;
     private Date date;
@@ -20,6 +21,7 @@ public class CommentaryDto {
         this.idCommentary = commentary.getIdCommentary();
         this.author = commentary.getAuthor();
         this.text = commentary.getText();
+        this.username = commentary.getUser().getUsername();
         this.idArticle = commentary.getArticle().getIdArticle();
         this.date = commentary.getDate();
     }

@@ -1,5 +1,6 @@
 package model.repository;
 
+import model.entity.Mail;
 import model.entity.Recipient;
 import model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,6 +13,7 @@ import java.util.Optional;
  */
 public interface RecipientRepository extends JpaRepository<Recipient, Integer> {
 
-    Optional<List<Recipient>> findAllByUserReciever(User user);
+    Optional<Recipient> findByUserRecieverAndMail(User user, Mail mail);
+    Optional<List<Recipient>> findAllByUserRecieverOrderByIdRecipientDesc(User user);
     Optional<List<Recipient>> findFirst5ByUserRecieverOrderByIdRecipientDesc(User user);
 }

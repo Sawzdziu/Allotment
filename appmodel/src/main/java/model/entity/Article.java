@@ -49,7 +49,7 @@ public class Article {
         this.text = text;
     }
 
-    @Column(name = "date", columnDefinition= "TIMESTAMP WITH TIME ZONE")
+    @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     public Date getDate(){return date;}
 

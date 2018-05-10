@@ -56,6 +56,7 @@ public class ArticleService {
             article.setDate(new Date());
             article.setTitle(articleDto.getTitle());
             article.setText(articleDto.getText());
+            article.setAuthor(getAuthor(getUser()));
 
             persistArticle(article);
         } else {

@@ -17,31 +17,34 @@ public class ArticleController {
 
     @GetMapping("/getLast")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public List<ArticleDto> getLastFiveArticles(){
+    public List<ArticleDto> getLastFiveArticles() {
         return articleService.getLastFiveArticles();
     }
 
     @GetMapping("/getAll")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public List<ArticleDto> getAllArticles(){
+    public List<ArticleDto> getAllArticles() {
         return articleService.getAllArticles();
     }
 
     @PostMapping("/new")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public void createNewArticle(@RequestBody ArticleDto articleDto){
+    public String createNewArticle(@RequestBody ArticleDto articleDto) {
         articleService.createNewArticle(articleDto);
+        return "Article created!";
     }
 
     @PutMapping("/edit/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public void editArticle(@PathVariable Integer id, @RequestBody ArticleDto articleDto){
+    public String editArticle(@PathVariable Integer id, @RequestBody ArticleDto articleDto) {
         articleService.editArticle(articleDto);
+        return "Article edited!";
     }
 
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public void deleteArticle(@PathVariable Integer id){
+    public String deleteArticle(@PathVariable Integer id) {
         articleService.deleteArticle(id);
+        return "Article deleted!";
     }
 }

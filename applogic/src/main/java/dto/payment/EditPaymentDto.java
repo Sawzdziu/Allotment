@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 public class EditPaymentDto {
 
     private Integer idPayment;
-    private Integer charge;
+    private Double charge;
     private String title;
     private Integer userId;
 

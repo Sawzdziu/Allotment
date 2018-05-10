@@ -37,7 +37,7 @@ public class PaymentServiceTest {
     @Test
     public void newPayment() {
         AddPaymentDto addPaymentDto = new AddPaymentDto();
-        addPaymentDto.setCharge(100);
+        addPaymentDto.setCharge(100.00);
         addPaymentDto.setTitle("Test payment");
         addPaymentDto.setUserId(3);
 
@@ -47,7 +47,7 @@ public class PaymentServiceTest {
         Assert.assertEquals("Size of all payments", 7, paymentDtoList.size());
         Assert.assertEquals("Id of added payment", new Integer(7), paymentDtoList.get(6).getIdPayment());
         Assert.assertEquals("Title of added payment", "Test payment", paymentDtoList.get(6).getTitle());
-        Assert.assertEquals("Charge of added payment", new Integer(100), paymentDtoList.get(6).getCharge());
+        Assert.assertEquals("Charge of added payment", new Double(100.00), paymentDtoList.get(6).getCharge());
         Assert.assertEquals("User id of added payment", new Integer(3), paymentDtoList.get(6).getUserDto().getIdUser());
         Assert.assertEquals("Allotment id of added payment", new Integer(3), paymentDtoList.get(6).getAllotmentDto().getIdAllotment());
     }
@@ -56,7 +56,7 @@ public class PaymentServiceTest {
     public void editPayment() {
         EditPaymentDto editPaymentDto = new EditPaymentDto();
         editPaymentDto.setIdPayment(1);
-        editPaymentDto.setCharge(100);
+        editPaymentDto.setCharge(100.00);
         editPaymentDto.setTitle("Test payment");
         editPaymentDto.setUserId(1);
 
@@ -66,7 +66,7 @@ public class PaymentServiceTest {
         Assert.assertEquals("Size of all payments", 6, paymentDtoList.size());
         Assert.assertEquals("Id of first payment", new Integer(1), paymentDtoList.get(0).getIdPayment());
         Assert.assertEquals("Title of added payment", "Test payment", paymentDtoList.get(0).getTitle());
-        Assert.assertEquals("Charge of added payment", new Integer(100), paymentDtoList.get(0).getCharge());
+        Assert.assertEquals("Charge of added payment", new Double(100.00), paymentDtoList.get(0).getCharge());
         Assert.assertEquals("User id of added payment", new Integer(1), paymentDtoList.get(0).getUserDto().getIdUser());
         Assert.assertEquals("Allotment id of added payment", new Integer(1), paymentDtoList.get(0).getAllotmentDto().getIdAllotment());
     }
@@ -79,7 +79,7 @@ public class PaymentServiceTest {
         Assert.assertEquals("Size of all payments", 5, paymentDtoList.size());
         Assert.assertEquals("Id of first payment", new Integer(2), paymentDtoList.get(0).getIdPayment());
         Assert.assertEquals("Title of added payment", "Title second", paymentDtoList.get(0).getTitle());
-        Assert.assertEquals("Charge of added payment", new Integer(230), paymentDtoList.get(0).getCharge());
+        Assert.assertEquals("Charge of added payment", new Double(230.00), paymentDtoList.get(0).getCharge());
         Assert.assertTrue("Payment is paid", paymentDtoList.get(0).getPaid());
     }
 }

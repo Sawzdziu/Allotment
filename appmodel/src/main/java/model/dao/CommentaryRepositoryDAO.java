@@ -31,6 +31,10 @@ public class CommentaryRepositoryDAO {
         return commentaryRepository.findAllByArticleIdArticle(id).orElse(Collections.emptyList());
     }
 
+    public void delete(Commentary commentary){
+        commentaryRepository.delete(commentary);
+    }
+
     public void save(Commentary commentary){
         commentaryRepository.save(commentary);
     }

@@ -11,7 +11,7 @@ import model.entity.Payment;
 public class PaymentDto {
 
     private Integer idPayment;
-    private Integer charge;
+    private Double charge;
     private Boolean paid;
     private String title;
     private AllotmentDto allotmentDto;

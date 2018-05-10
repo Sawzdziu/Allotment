@@ -1,5 +1,6 @@
 package model.dao;
 
+import model.entity.Mail;
 import model.entity.Recipient;
 import model.entity.User;
 import model.repository.RecipientRepository;
@@ -20,17 +21,22 @@ public class RecipientRepositoryDAO {
     private RecipientRepository recipientRepository;
 
     @Transactional
-    public List<Recipient> findAllMailsForUser(User user){
-        return recipientRepository.findAllByUserReciever(user).orElseThrow(() -> new NoResultException());
+    public List<Recipient> findAllMailsForUser(User user) {
+        return recipientRepository.findAllByUserRecieverOrderByIdRecipientDesc(user).orElseThrow(() -> new NoResultException());
     }
 
     @Transactional
-    public List<Recipient> findLastFiveMailsForUser(User user){
+    public List<Recipient> findLastFiveMailsForUser(User user) {
         return recipientRepository.findFirst5ByUserRecieverOrderByIdRecipientDesc(user).orElseThrow(() -> new NoResultException());
     }
 
     @Transactional
-    public void persistRecipient(Recipient recipient){
+    public Recipient findRecipientByUserAndIdMail(User user, Mail mail) {
+        return recipientRepository.findByUserRecieverAndMail(user, mail).orElseThrow(NoResultException::new);
+    }
+
+    @Transactional
+    public void persistRecipient(Recipient recipient) {
         recipientRepository.save(recipient);
     }
 }

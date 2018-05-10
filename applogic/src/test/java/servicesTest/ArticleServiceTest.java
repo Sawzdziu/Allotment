@@ -87,7 +87,7 @@ public class ArticleServiceTest extends AuthenticationSetup{
         Assert.assertEquals("Size of all articles", 4, articleDtoList.size());
         Assert.assertEquals("Title of first article", "Title test", articleDtoList.get(0).getTitle());
         Assert.assertEquals("Text of first article", "Test", articleDtoList.get(0).getText());
-        Assert.assertEquals("Author of first article", "Author first", articleDtoList.get(0).getAuthor());
+        Assert.assertEquals("Author of first article", "Adam Kowalski", articleDtoList.get(0).getAuthor());
         Assert.assertEquals("Id of first article", new Integer(1), articleDtoList.get(0).getIdArticle());
     }
 

@@ -51,12 +51,12 @@ public class MailServiceTest extends AuthenticationSetup {
         List<MailBodyDto> mailBodyDtoList = mailService.getAllMails();
 
         Assert.assertEquals("Number of emails", 2, mailBodyDtoList.size());
-        Assert.assertEquals("Subject of first email", "Temat pierwszy", mailBodyDtoList.get(0).getSubject());
-        Assert.assertEquals("Id of first email", new Long(1), mailBodyDtoList.get(0).getIdMail());
-        Assert.assertEquals("Text of first email", "Tekst pierwszy", mailBodyDtoList.get(0).getText());
-        Assert.assertEquals("Subject of second email", "Temat drugi", mailBodyDtoList.get(1).getSubject());
-        Assert.assertEquals("Id of second email", new Long(2), mailBodyDtoList.get(1).getIdMail());
-        Assert.assertEquals("Text of second email", "Tekst drugi", mailBodyDtoList.get(1).getText());
+        Assert.assertEquals("Subject of first email", "Temat drugi", mailBodyDtoList.get(0).getSubject());
+        Assert.assertEquals("Id of first email", new Long(2), mailBodyDtoList.get(0).getIdMail());
+        Assert.assertEquals("Text of first email", "Tekst drugi", mailBodyDtoList.get(0).getText());
+        Assert.assertEquals("Subject of second email", "Temat pierwszy", mailBodyDtoList.get(1).getSubject());
+        Assert.assertEquals("Id of second email", new Long(1), mailBodyDtoList.get(1).getIdMail());
+        Assert.assertEquals("Text of second email", "Tekst pierwszy", mailBodyDtoList.get(1).getText());
     }
 
     @Test
@@ -70,8 +70,8 @@ public class MailServiceTest extends AuthenticationSetup {
         List<MailBodyDto> mailBodyDtoList = mailService.getAllMails();
 
         Assert.assertEquals("Number of emails", 3, mailBodyDtoList.size());
-        Assert.assertEquals("Subject of first email", "New subject", mailBodyDtoList.get(2).getSubject());
-        Assert.assertEquals("Id of first email", new Long(3), mailBodyDtoList.get(2).getIdMail());
-        Assert.assertEquals("Text of first email", "New added mail", mailBodyDtoList.get(2).getText());
+        Assert.assertEquals("Subject of first email", "New subject", mailBodyDtoList.get(0).getSubject());
+        Assert.assertEquals("Id of first email", new Long(3), mailBodyDtoList.get(0).getIdMail());
+        Assert.assertEquals("Text of first email", "New added mail", mailBodyDtoList.get(0).getText());
     }
 }

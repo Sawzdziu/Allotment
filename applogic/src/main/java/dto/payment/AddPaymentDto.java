@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AddPaymentDto {
 
-    private Integer charge;
+    private Double charge;
     private String title;
     private Integer userId;
 }

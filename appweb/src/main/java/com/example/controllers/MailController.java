@@ -22,19 +22,25 @@ public class MailController {
 
     @GetMapping("/getLast")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public List<MailDto> getLastFiveMails(){
+    public List<MailDto> getLastFiveMails() {
         return mailService.getLastFiveMails();
     }
 
     @GetMapping("/getAll")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public List<MailBodyDto> getAllMails(){
+    public List<MailBodyDto> getAllMails() {
         return mailService.getAllMails();
+    }
+
+    @PutMapping("/seen/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public void seen(@PathVariable Long id) {
+        mailService.seen(id);
     }
 
     @PostMapping("/new")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public void newMail(@RequestBody NewMailDto newMailDto){
+    public void newMail(@RequestBody NewMailDto newMailDto) {
         mailService.createNewMail(newMailDto);
     }
 }

@@ -15,17 +15,25 @@ public class CommentaryController {
     private CommentaryService commentaryService;
 
     @PostMapping("/new")
-    public void createNewCommentary(@RequestBody CommentaryDto commentaryDto){
+    public String createNewCommentary(@RequestBody CommentaryDto commentaryDto){
         commentaryService.addCommentary(commentaryDto);
+        return "Commentary added successfully!";
     }
 
     @PutMapping("/edit/{id}")
-    public void editCommentary(@PathVariable Integer id,@RequestBody CommentaryDto commentaryDto){
+    public String editCommentary(@PathVariable Integer id,@RequestBody CommentaryDto commentaryDto){
         commentaryService.editCommentary(commentaryDto);
+        return "Commentary edited successfully!";
     }
 
     @GetMapping("/getCommentariesFromArticle/{id}")
     public List<CommentaryDto> getCommentariesFromArticle(@PathVariable Integer id){
         return commentaryService.getCommentariesFromArticle(id);
+    }
+
+    @DeleteMapping("/deleteCommentary/{id}")
+    public String deleteCommentary(@PathVariable Integer id){
+        commentaryService.deleteCommentary(id);
+        return "Commentary deleted successfully!";
     }
 }

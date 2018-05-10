@@ -63,6 +63,13 @@ public class PaymentService {
         persistPayment(payment);
     }
 
+    public void declinePayment(Integer id){
+        Payment payment = paymentRepositoryDAO.getByPaymentId(id);
+        payment.setPaid(false);
+
+        persistPayment(payment);
+    }
+
     public void updatePayment(EditPaymentDto editPaymentDto){
         Payment payment = paymentRepositoryDAO.getByPaymentId(editPaymentDto.getIdPayment());
         payment.setTitle(editPaymentDto.getTitle());

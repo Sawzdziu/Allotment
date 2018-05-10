@@ -26,11 +26,11 @@ public class CommentaryService {
     @Autowired
     private AuthenticationService authenticationService;
 
-    public List<CommentaryDto> getCommentariesFromArticle(Integer id){
+    public List<CommentaryDto> getCommentariesFromArticle(Integer id) {
         return mapToCommentaryDto(commentaryRepositoryDAO.getAllCommentariesForArticleId(id));
     }
 
-    public void addCommentary(CommentaryDto commentaryDto){
+    public void addCommentary(CommentaryDto commentaryDto) {
         Commentary commentary = new Commentary();
         commentary.setArticle(getArticle(commentaryDto.getIdArticle()));
         commentary.setText(commentaryDto.getText());
@@ -44,31 +44,40 @@ public class CommentaryService {
         persistCommentary(commentary);
     }
 
-    public void editCommentary(CommentaryDto commentaryDto){
+    public void editCommentary(CommentaryDto commentaryDto) {
         Commentary commentary = commentaryRepositoryDAO.getCommentaryById(commentaryDto.getIdCommentary());
-        if(commentary.getUser().equals(authenticationService.getUser())){
+        if (commentary.getUser().equals(authenticationService.getUser())) {
             commentary.setDate(new Date());
             commentary.setText(commentaryDto.getText());
 
             persistCommentary(commentary);
-        }else{
+        } else {
             throw new AccessDeniedException("You can't modify someone else commentary!");
         }
     }
 
-    private void persistCommentary(Commentary commentary){
+    public void deleteCommentary(Integer id) {
+        Commentary commentary = commentaryRepositoryDAO.getCommentaryById(id);
+        if (commentary.getUser().equals(authenticationService.getUser())) {
+            commentaryRepositoryDAO.delete(commentary);
+        } else {
+            throw new AccessDeniedException("You can't modify someone else commentary!");
+        }
+    }
+
+    private void persistCommentary(Commentary commentary) {
         commentaryRepositoryDAO.save(commentary);
     }
 
-    private Article getArticle(Integer id){
+    private Article getArticle(Integer id) {
         return articleRepositoryDAO.getArticlesById(id);
     }
 
-    private String getAuthor(User user){
+    private String getAuthor(User user) {
         return user.getName() + " " + user.getLastName();
     }
 
-    private List<CommentaryDto> mapToCommentaryDto(List<Commentary> articleList){
+    private List<CommentaryDto> mapToCommentaryDto(List<Commentary> articleList) {
         return articleList.stream().map(CommentaryDto::new).collect(Collectors.toList());
     }
 }
