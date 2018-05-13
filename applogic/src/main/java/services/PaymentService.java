@@ -37,15 +37,26 @@ public class PaymentService {
     @Autowired
     private AllotmentUserRepositoryDAO allotmentUserRepositoryDAO;
 
-    public List<PaymentDto> getAllPayments(){
+    /**
+     * @return Method returns all payments defined in system
+     */
+    public List<PaymentDto> getAllPayments() {
         return mapToPaymentDto(paymentRepositoryDAO.getAll());
     }
 
-    public List<PaymentDto> getPayments(){
+    /**
+     * @return Returns payments for user which application context is storing
+     */
+    public List<PaymentDto> getPayments() {
         return mapToPaymentDto(paymentRepositoryDAO.getPaymentForUser(getUser()));
     }
 
-    public void createPayment(AddPaymentDto addPaymentDto){
+    /**
+     * Extracting data from addPaymentDto and creating new Payment(entity)
+     *
+     * @param addPaymentDto data contains all necessary information about payment
+     */
+    public void createPayment(AddPaymentDto addPaymentDto) {
         Payment payment = new Payment();
         payment.setCharge(addPaymentDto.getCharge());
         payment.setTitle(addPaymentDto.getTitle());
@@ -56,21 +67,33 @@ public class PaymentService {
         persistPayment(payment);
     }
 
-    public void confirmPayment(Integer id){
+    /**
+     * Method confirm payment specified by id
+     * @param id of payment
+     */
+    public void confirmPayment(Integer id) {
         Payment payment = paymentRepositoryDAO.getByPaymentId(id);
         payment.setPaid(true);
 
         persistPayment(payment);
     }
 
-    public void declinePayment(Integer id){
+    /**
+     * Method decline payment specified by id
+     * @param id of payment
+     */
+    public void declinePayment(Integer id) {
         Payment payment = paymentRepositoryDAO.getByPaymentId(id);
         payment.setPaid(false);
 
         persistPayment(payment);
     }
 
-    public void updatePayment(EditPaymentDto editPaymentDto){
+    /**
+     * Method update payment depend on editPaymentDto
+     * @param editPaymentDto data which are extracted to update payment entity
+     */
+    public void updatePayment(EditPaymentDto editPaymentDto) {
         Payment payment = paymentRepositoryDAO.getByPaymentId(editPaymentDto.getIdPayment());
         payment.setTitle(editPaymentDto.getTitle());
         payment.setCharge(editPaymentDto.getCharge());
@@ -78,31 +101,27 @@ public class PaymentService {
         persistPayment(payment);
     }
 
-    public void deletePayment(Integer id){
+    /**
+     * Method deletes payment specified by id
+     * @param id of payment
+     */
+    public void deletePayment(Integer id) {
         paymentRepositoryDAO.delete(id);
     }
 
-    private User getUserById(Integer idUser){
-        return userRepositoryDAO.findById(idUser);
-    }
-
-    private Allotment getAllotmentById(Integer idAllotment){
-        return allotmentRepositoryDAO.getAllotmentById(idAllotment);
-    }
-
-    private void persistPayment(Payment payment){
+    private void persistPayment(Payment payment) {
         paymentRepositoryDAO.save(payment);
     }
 
-    private AllotmentUser getAllotmentUser(Integer idUser){
+    private AllotmentUser getAllotmentUser(Integer idUser) {
         return allotmentUserRepositoryDAO.findAllotmentUserByUserAndActiveTrue(userRepositoryDAO.findById(idUser));
     }
 
-    private List<PaymentDto> mapToPaymentDto(List<Payment> payments){
+    private List<PaymentDto> mapToPaymentDto(List<Payment> payments) {
         return payments.stream().map(PaymentDto::new).collect(Collectors.toList());
     }
 
-    private User getUser(){
+    private User getUser() {
         return authenticationService.getUser();
     }
 }

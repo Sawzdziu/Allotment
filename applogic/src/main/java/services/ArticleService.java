@@ -28,14 +28,25 @@ public class ArticleService {
     @Autowired
     private AuthenticationService authenticationService;
 
+    /**
+     * @return List of all articles and commentaries
+     */
     public List<ArticleDto> getAllArticles() {
         return setCommentaries(mapToArticleDto(sort(articleRepositoryDAO.getAll())));
     }
 
+    /**
+     * @return Last five articles and its commentaries from application
+     */
     public List<ArticleDto> getLastFiveArticles() {
         return mapToArticleDto(sort(articleRepositoryDAO.getLastFiveArticles()));
     }
 
+    /**
+     * Method creates new Article based on data from articleDto
+     *
+     * @param articleDto containing data needed  to create new Article
+     */
     public void createNewArticle(ArticleDto articleDto) {
         Article article = new Article();
         article.setText(articleDto.getText());
@@ -50,6 +61,11 @@ public class ArticleService {
         persistArticle(article);
     }
 
+    /**
+     * Method update article based on data from articleDto
+     *
+     * @param articleDto containing data needed to update new Article
+     */
     public void editArticle(ArticleDto articleDto) {
         Article article = articleRepositoryDAO.getArticlesById(articleDto.getIdArticle());
         if (article.getUser().equals(getUser())) {
@@ -64,6 +80,11 @@ public class ArticleService {
         }
     }
 
+    /**
+     * Deletes Article specified by id
+     *
+     * @param id of article
+     */
     public void deleteArticle(Integer id) {
         Article article = articleRepositoryDAO.getArticlesById(id);
         if (article.getUser().equals(getUser())) {
@@ -73,15 +94,27 @@ public class ArticleService {
         }
     }
 
+    /**
+     * @param articleDtoList list of articles
+     * @return List of mapped article with commentaries
+     */
     private List<ArticleDto> setCommentaries(List<ArticleDto> articleDtoList) {
         articleDtoList.forEach(articleDto -> articleDto.setCommentaryDtoList(getCommentariesForArticle(articleDto.getIdArticle())));
         return articleDtoList;
     }
 
+    /**
+     * @param idArticle of article
+     * @return List of commentaries mapped to dto object for specified article
+     */
     private List<CommentaryDto> getCommentariesForArticle(Integer idArticle) {
         return commentaryService.getCommentariesFromArticle(idArticle);
     }
 
+    /**
+     * @param articleList list of articles
+     * @return List of articles sorted by its creation date
+     */
     private List<Article> sort(List<Article> articleList) {
         List<Article> sortedArticles = articleList.stream()
                 .sorted(Comparator.comparing(Article::getDate).reversed())

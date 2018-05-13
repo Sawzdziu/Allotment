@@ -35,7 +35,7 @@ public class CommentaryService {
         commentary.setArticle(getArticle(commentaryDto.getIdArticle()));
         commentary.setText(commentaryDto.getText());
 
-        User user = authenticationService.getUser();
+        User user = getUser();
 
         commentary.setUser(user);
         commentary.setAuthor(getAuthor(user));
@@ -46,7 +46,7 @@ public class CommentaryService {
 
     public void editCommentary(CommentaryDto commentaryDto) {
         Commentary commentary = commentaryRepositoryDAO.getCommentaryById(commentaryDto.getIdCommentary());
-        if (commentary.getUser().equals(authenticationService.getUser())) {
+        if (commentary.getUser().equals(getUser())) {
             commentary.setDate(new Date());
             commentary.setText(commentaryDto.getText());
 
@@ -63,6 +63,10 @@ public class CommentaryService {
         } else {
             throw new AccessDeniedException("You can't modify someone else commentary!");
         }
+    }
+
+    private User getUser(){
+        return authenticationService.getUser();
     }
 
     private void persistCommentary(Commentary commentary) {

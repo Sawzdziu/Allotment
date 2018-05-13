@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,12 +23,12 @@ public class RecipientRepositoryDAO {
 
     @Transactional
     public List<Recipient> findAllMailsForUser(User user) {
-        return recipientRepository.findAllByUserRecieverOrderByIdRecipientDesc(user).orElseThrow(() -> new NoResultException());
+        return recipientRepository.findAllByUserRecieverOrderByIdRecipientDesc(user).orElse(Collections.emptyList());
     }
 
     @Transactional
     public List<Recipient> findLastFiveMailsForUser(User user) {
-        return recipientRepository.findFirst5ByUserRecieverOrderByIdRecipientDesc(user).orElseThrow(() -> new NoResultException());
+        return recipientRepository.findFirst5ByUserRecieverOrderByIdRecipientDesc(user).orElse(Collections.emptyList());
     }
 
     @Transactional

@@ -27,45 +27,55 @@ public class AllotmentService {
     @Autowired
     private AllotmentUserRepositoryDAO allotmentUserRepositoryDAO;
 
-    public AllotmentDto getAllotmentForUser(){
+    public AllotmentDto getAllotmentForUser() {
         User user = authenticationService.getUser();
         return new AllotmentDto(allotmentUserRepositoryDAO.findAllotmentUserByUserAndActiveTrue(user).getAllotment());
     }
 
+    /**
+     * @return List of all allotments and its connection or not between user
+     */
     public List<UserAllotmentDto> getAllAllotments() {
-        return getAllAllotment();
+        return sort(mapAllotmentToUserAllotment());
     }
 
-    public List<UserAllotmentDto> getAllNotOccupiedAllotments(){
+    /**
+     * @return List of not occupied allotmens
+     */
+    public List<UserAllotmentDto> getAllNotOccupiedAllotments() {
         return getAllFreeAllotments();
     }
 
+    /**
+     * @return List of all active connection between user and allotment
+     */
     public List<UserAllotmentDto> getAllActiveAllotments() {
-        return getAllActiveAllotment();
+        return sort(mapToAllotmentUserDto(allotmentUserRepositoryDAO.findAllotmentsUsersActive()));
+
     }
 
     public void editAllotment(AllotmentDto allotmentDto) {
         persistAllotment(updateAllotment(allotmentDto));
     }
 
-    private List<UserAllotmentDto> getAllAllotment() {
-        return sort(mapAllotmentToUserAllotment());
-    }
-
-    private List<UserAllotmentDto> getAllActiveAllotment() {
-        return sort(mapToAllotmentUserDto(allotmentUserRepositoryDAO.findAllotmentsUsersActive()));
-    }
-
     private List<UserAllotmentDto> mapToAllotmentUserDto(List<AllotmentUser> allotmentUsers) {
         return allotmentUsers.stream().map(allotmentUser -> new UserAllotmentDto(allotmentUser.getUser(), allotmentUser.getAllotment(), allotmentUser.getActive())).collect(Collectors.toList());
     }
 
+    /**
+     * @param allotmentUsers list of allotmentUsers
+     * @return List of userAllotmentDto sorted by allotment id
+     */
     private List<UserAllotmentDto> sort(List<UserAllotmentDto> allotmentUsers) {
         List<UserAllotmentDto> list = allotmentUsers;
         list.sort(Comparator.comparing(a -> a.getAllotmentDto().getIdAllotment()));
         return list;
     }
 
+    /**
+     * @param allotmentDto data needed to update Allotment
+     * @return Updated allotment entity based on allotmentDto data
+     */
     private Allotment updateAllotment(AllotmentDto allotmentDto) {
         Allotment allotment = allotmentRepositoryDAO.getAllotmentById(allotmentDto.getIdAllotment());
         allotment.setBower(allotmentDto.getBower());
@@ -78,9 +88,10 @@ public class AllotmentService {
 
     /**
      * Function returns all allotments not occupied by anyone
+     *
      * @return list of free allotments
      */
-    private List<UserAllotmentDto> getAllFreeAllotments(){
+    private List<UserAllotmentDto> getAllFreeAllotments() {
         List<AllotmentUser> allotmentUserList = allotmentUserRepositoryDAO.findAllotmentsUsersActive();
         List<UserAllotmentDto> resultList = new LinkedList<>();
         allotmentRepositoryDAO.findAll().forEach(allotment -> {
@@ -93,12 +104,13 @@ public class AllotmentService {
 
     /**
      * Function creates UserAllotmentDto for all allotments in application. Required for acknowledge if allotment is active or not.
+     *
      * @return concatenation of allotments and allotment-user table
      */
     private List<UserAllotmentDto> mapAllotmentToUserAllotment() {
         List<UserAllotmentDto> resultList;
         resultList = getAllFreeAllotments();
-        resultList.addAll(getAllActiveAllotment());
+        resultList.addAll(getAllActiveAllotments());
         return resultList;
     }
 
@@ -108,6 +120,7 @@ public class AllotmentService {
 
     /**
      * Function checks if in AllotmentUser list exist allotment with specified id
+     *
      * @param list
      * @param idAllotment
      * @return true if allotment exist in this list
