@@ -1,20 +1,24 @@
 package model.entity;
 
+//import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+//import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 
 @Entity
+//@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="mailId")
 public class Mailbody {
-    private Integer mailId;
+    private Long mailId;
     private String text;
     private Mail mail;
 
     @Id
     @Column(name = "mail_id")
-    public Integer getMailId() {
+    public Long getMailId() {
         return mailId;
     }
 
-    public void setMailId(Integer mailId) {
+    public void setMailId(Long mailId) {
         this.mailId = mailId;
     }
 
@@ -45,9 +49,9 @@ public class Mailbody {
         return text != null ? text.hashCode() : 0;
     }
 
-    @OneToOne
-    @PrimaryKeyJoinColumn
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "mail_id", referencedColumnName = "id_mail", nullable = false)
+    @MapsId
     public Mail getMail() {
         return mail;
     }

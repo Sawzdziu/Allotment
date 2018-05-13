@@ -1,5 +1,7 @@
 package model.entity;
 
+//import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+//import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +11,7 @@ import java.util.Collection;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+//@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="idUser")
 public class User {
     private Integer idUser;
     private String name;
@@ -18,10 +21,10 @@ public class User {
     private String phone;
     private String username;
     private Boolean isActive;
-    private Collection<Article> articles;
-    private Collection<Commentary> commentaries;
-    private Collection<Mail> sendMails;
-    private Collection<Recipient> recievedMails;
+//    private Collection<Article> articles;
+//    private Collection<Commentary> commentaries;
+//    private Collection<Mail> sendMails;
+//    private Collection<Recipient> recievedMails;
     private Role role;
 
     @Id
@@ -137,41 +140,41 @@ public class User {
         return result;
     }
 
-    @OneToMany(mappedBy = "user")
-    public Collection<Article> getArticles() {
-        return articles;
-    }
-
-    public void setArticles(Collection<Article> articles) {
-        this.articles = articles;
-    }
-
-    @OneToMany(mappedBy = "user")
-    public Collection<Commentary> getCommentaries() {
-        return commentaries;
-    }
-
-    public void setCommentaries(Collection<Commentary> commentaries) {
-        this.commentaries = commentaries;
-    }
-
-    @OneToMany(mappedBy = "userSender")
-    public Collection<Mail> getSendMails() {
-        return sendMails;
-    }
-
-    public void setSendMails(Collection<Mail> sendMails) {
-        this.sendMails = sendMails;
-    }
-
-    @OneToMany(mappedBy = "userReciever")
-    public Collection<Recipient> getRecievedMails() {
-        return recievedMails;
-    }
-
-    public void setRecievedMails(Collection<Recipient> recievedMails) {
-        this.recievedMails = recievedMails;
-    }
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    public Collection<Article> getArticles() {
+//        return articles;
+//    }
+//
+//    public void setArticles(Collection<Article> articles) {
+//        this.articles = articles;
+//    }
+//
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    public Collection<Commentary> getCommentaries() {
+//        return commentaries;
+//    }
+//
+//    public void setCommentaries(Collection<Commentary> commentaries) {
+//        this.commentaries = commentaries;
+//    }
+//
+//    @OneToMany(mappedBy = "userSender", fetch = FetchType.LAZY)
+//    public Collection<Mail> getSendMails() {
+//        return sendMails;
+//    }
+//
+//    public void setSendMails(Collection<Mail> sendMails) {
+//        this.sendMails = sendMails;
+//    }
+//
+//    @OneToMany(mappedBy = "userReciever", fetch = FetchType.LAZY)
+//    public Collection<Recipient> getRecievedMails() {
+//        return recievedMails;
+//    }
+//
+//    public void setRecievedMails(Collection<Recipient> recievedMails) {
+//        this.recievedMails = recievedMails;
+//    }
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", referencedColumnName = "id_role", nullable = false)

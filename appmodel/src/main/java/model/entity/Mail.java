@@ -8,6 +8,7 @@ public class Mail {
     private Long idMail;
     private String subject;
     private User userSender;
+    @PrimaryKeyJoinColumn
     private Mailbody mailBody;
     private Collection<Recipient> recipients;
 
@@ -62,7 +63,7 @@ public class Mail {
         this.userSender = userSender;
     }
 
-    @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "mail")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "mail")
     public Mailbody getMailBody() {
         return mailBody;
     }

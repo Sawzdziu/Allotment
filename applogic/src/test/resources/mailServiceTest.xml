@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <role id_role="1" name="ROLE_ADMIN"/>
+    <role id_role="2" name="ROLE_USER"/>
+
+    <user id_user="1" name="Adam" last_name="Kowalski" password="Test" email="a.kowalski@wp.pl" phone="123456789" username="Admin"
+          is_active="true" role_id="1"/>
+    <user id_user="2" name="Andrzej" last_name="Nowak" password="Nowak" email="a.nowak@onet.pl" phone="123452341" username="User"
+          is_active="true" role_id="2"/>
+    <user id_user="3" name="Justyna" last_name="Anders" password="Anders" email="j.anders@gmail.com" phone="88889990" username="Test"
+          is_active="false" role_id="2"/>
+
+    <mail id_mail="1" subject="Temat pierwszy" user_sender_id="1"/>
+    <mail id_mail="2" subject="Temat drugi" user_sender_id="3"/>
+
+    <mailbody mail_id="1" text="Tekst pierwszy"/>
+    <mailbody mail_id="2" text="Tekst drugi"/>
+
+    <recipient id_recipient="1" seen="true" mail_id="1" user_reciver_id="1"/>
+    <recipient id_recipient="2" seen="true" mail_id="1" user_reciver_id="2"/>
+
+    <!--<recipient id_recipient="6" seen="true" mail_id="1" user_reciver_id="1"/>-->
+
+    <recipient id_recipient="3" seen="true" mail_id="2" user_reciver_id="1"/>
+    <recipient id_recipient="4" seen="true" mail_id="2" user_reciver_id="2"/>
+    <recipient id_recipient="5" seen="true" mail_id="2" user_reciver_id="3"/>
+
+</dataset>

@@ -1,8 +1,11 @@
 package com.example.controllers;
 
 import lombok.extern.slf4j.Slf4j;
+import org.postgresql.util.PSQLException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.persistence.NoResultException;
@@ -16,10 +19,22 @@ public class ControllerAdvice {
         log.error("Error caught by Global Exception Handler", e);
     }
 
+    @ExceptionHandler(value = BadCredentialsException.class)
+    public ResponseEntity<String> badCredentialException(Exception e) throws Exception {
+        logError(e);
+        return new ResponseEntity<>("Username or password incorrect", HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(value = NoResultException.class)
     public ResponseEntity<String> defaultErrorHandler(Exception e) throws Exception {
         logError(e);
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("No data found", HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = DataIntegrityViolationException.class)
+    public ResponseEntity<String> sqlException(Exception e) throws Exception {
+        logError(e);
+        return new ResponseEntity<>("This username already exist", HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(value = {NullPointerException.class, IllegalAccessException.class, UnsupportedOperationException.class, IOException.class})

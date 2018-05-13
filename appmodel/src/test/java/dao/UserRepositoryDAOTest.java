@@ -19,8 +19,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
-import javax.persistence.NoResultException;
-
 @ActiveProfiles("test")
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestModelConfiguration.class)
@@ -43,7 +41,7 @@ public class UserRepositoryDAOTest {
 
     @Test
     public void testFindAdmin(){
-        Assert.assertEquals("Find user with admin privileges", "Kowalski", userRepositoryDAO.findByRole(roleRepositoryDAO.getByName("Admin")).get(0).getLastName());
+        Assert.assertEquals("Find user with admin privileges", "Kowalski", userRepositoryDAO.findByRole(roleRepositoryDAO.getByName("ADMIN")).get(0).getLastName());
     }
 
     @Test(expected = EmptyResultDataAccessException.class)

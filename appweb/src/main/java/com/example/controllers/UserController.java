@@ -1,26 +1,21 @@
 package com.example.controllers;
 
-import dto.UserAllotmentDto;
-import dto.UserDto;
+import dto.AddEditUserDto;
+import dto.allotmentUser.UserAllotmentDto;
+import dto.allotmentUser.UserDto;
 import lombok.extern.slf4j.Slf4j;
-import model.dao.UserRepositoryDAO;
-import model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import services.AllotmentUserService;
 import services.UserService;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @Slf4j
 @RestController
+@RequestMapping("/users")
 public class UserController {
-
-    @Autowired
-    private UserRepositoryDAO userRepositoryDAO;
 
     @Autowired
     private AllotmentUserService allotmentUserService;
@@ -28,55 +23,61 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/world")
-    public String hello() throws Exception {
-        System.out.println("TEST");
-        User user = userRepositoryDAO.findById(1);
-        System.out.println(userRepositoryDAO.findById(1).toString());
-        log.info("Hello controller info");
-        return "Hello World!";
-    }
-
-    @GetMapping("/working")
-    public String working(){
-        System.out.println("Working");
-        return "Working!";
-    }
-
-    @GetMapping("/roleuser")
-    @PreAuthorize("hasRole('USER')")
-    public String user(){
-        System.out.println("User permission");
-        return "User permission!";
-    }
-
-    @GetMapping("/admin")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String admin(){
-        System.out.println("Admin permission");
-        return "Admin permission!";
-    }
-
-    @GetMapping("/user/{id}")
+    @GetMapping("/get/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public UserDto getUser(@PathParam("id") Integer id){
+    public UserDto getUser(@PathVariable("id") Integer id) {
         return userService.getUserById(id);
     }
 
     @GetMapping("/allActiveUsers")
     @PreAuthorize("hasRole('ADMIN')")
-    public List<UserDto> getAllActiveUsers(){
+    public List<UserDto> getAllActiveUsers() {
         return userService.getAllActiveUsers();
     }
 
     @GetMapping("/allUsers")
-    public List<UserDto> getAllUsers(){
+    public List<UserDto> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/getAllUserAllotment")
-    public List<UserAllotmentDto> getAllUserAllotment(){
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public List<UserAllotmentDto> getAllUserAllotment() {
         System.out.println(allotmentUserService.getAllAllotmentUserDto().size());
         return allotmentUserService.getAllAllotmentUserDto();
+    }
+
+    @GetMapping("/getActiveUser")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public UserAllotmentDto getActiveUser(){
+        return allotmentUserService.getActiveUser();
+    }
+
+    @GetMapping("/getAllActiveUserAllotment")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public List<UserAllotmentDto> getAllActiveUserAllotment() {
+        System.out.println(allotmentUserService.getAllActiveAllotmentUserDto().size());
+        return allotmentUserService.getAllActiveAllotmentUserDto();
+    }
+
+    @PostMapping("/new")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public String addUser(@RequestBody AddEditUserDto addEditUserDto) {
+        userService.addUser(addEditUserDto);
+        return "User added successfully";
+    }
+
+    @PutMapping("/edit/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public String editUser(@PathVariable("id") Integer id, @RequestBody AddEditUserDto addEditUserDto) {
+        userService.editUser(addEditUserDto);
+        return "User edited successfully";
+    }
+
+    @PutMapping("/deactivate/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public String deactivateUser(@PathVariable("id") Integer id) {
+        userService.deactivateUser(id);
+        return "User deactivated successfully";
     }
 }

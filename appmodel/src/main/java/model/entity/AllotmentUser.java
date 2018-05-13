@@ -2,8 +2,8 @@ package model.entity;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "allotment_user", schema = "rodobronca", catalog = "Allotment")
+@Entity(name = "allotment_user")
+//@Table(name = "allotment_user", schema = "rodobronca", catalog = "Allotment")
 public class AllotmentUser {
     private Integer idAllotmentUser;
     private Boolean isActive;
@@ -39,6 +39,8 @@ public class AllotmentUser {
         AllotmentUser that = (AllotmentUser) o;
 
         if (isActive != null ? !isActive.equals(that.isActive) : that.isActive != null) return false;
+        if (allotment.getIdAllotment() != null ? !allotment.getIdAllotment().equals(that.allotment.getIdAllotment()) : that.allotment.getIdAllotment() != null) return false;
+        if (user.getIdUser() != null ? !user.getIdUser().equals(that.user.getIdUser()) : that.user.getIdUser() != null) return false;
 
         return true;
     }

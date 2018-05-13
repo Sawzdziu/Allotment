@@ -11,6 +11,10 @@ import java.util.Optional;
 public interface AllotmentUserRepository extends JpaRepository<AllotmentUser, Integer> {
 
     Optional<List<AllotmentUser>> findAllByUserIn(List<User> users);
-    Optional<AllotmentUser> findByUser(User user);
-    Optional<AllotmentUser> findByAllotment(Allotment allotment);
+    Optional<List<AllotmentUser>> findAllByActiveTrue();
+    Optional<List<AllotmentUser>> findAllByAllotmentAndActiveFalse(Allotment allotment);
+    Optional<List<AllotmentUser>> findByUser(User user);
+    Optional<AllotmentUser> findByUserAndActiveTrue(User user);
+    Optional<AllotmentUser> findByUserAndAllotment(User user, Allotment allotment);
+    Optional<List<AllotmentUser>> findByAllotment(Allotment allotment);
 }

@@ -46,7 +46,7 @@ public class UserRepositoryDAO {
     }
 
     @Transactional
-    public User findByEmail(String email) throws Exception {
+    public User findByEmail(String email) {
         return userRepository.findByEmail(email).orElseThrow(NoResultException::new);
     }
 

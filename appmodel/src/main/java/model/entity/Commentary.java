@@ -1,9 +1,13 @@
 package model.entity;
 
+//import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+//import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+//@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="idCommentary")
 public class Commentary {
     private Integer idCommentary;
     private String text;
@@ -35,7 +39,7 @@ public class Commentary {
 
     @Column(name = "date", columnDefinition= "TIMESTAMP WITH TIME ZONE")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date getDate(){return date;}
+    public Date getDate(){return date;}
 
     public void setDate(Date date){
         this.date = date;

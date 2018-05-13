@@ -1,10 +1,14 @@
 package model.entity;
 
+//import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+//import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
 
 @Entity
+//@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="idArticle")
 public class Article {
     private Integer idArticle;
     private String title;
@@ -45,9 +49,9 @@ public class Article {
         this.text = text;
     }
 
-    @Column(name = "date", columnDefinition= "TIMESTAMP WITH TIME ZONE")
+    @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date getDate(){return date;}
+    public Date getDate(){return date;}
 
     public void setDate(Date date){
         this.date = date;
@@ -97,7 +101,7 @@ public class Article {
         this.user = user;
     }
 
-    @OneToMany(mappedBy = "article")
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "article")
     public Collection<Commentary> getCommentaries() {
         return commentaries;
     }

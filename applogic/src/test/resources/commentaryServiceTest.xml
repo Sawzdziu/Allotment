@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <role id_role="1" name="ROLE_ADMIN"/>
+    <role id_role="2" name="ROLE_USER"/>
+
+    <user id_user="1" name="Adam" last_name="Kowalski" password="Test" email="a.kowalski@wp.pl" phone="123456789"
+          username="Admin"
+          is_active="true" role_id="1"/>
+    <user id_user="2" name="Andrzej" last_name="Nowak" password="Nowak" email="a.nowak@onet.pl" phone="123452341"
+          username="User"
+          is_active="true" role_id="2"/>
+    <user id_user="3" name="Justyna" last_name="Anders" password="Anders" email="j.anders@gmail.com" phone="88889990"
+          username="Test"
+          is_active="false" role_id="2"/>
+
+    <article id_article="1" author="Author first" user_id="1" title="Title first" text="First text"/>
+    <article id_article="2" author="Author second" user_id="3" title="Title second" text="Second text"/>
+    <article id_article="3" author="Author third" user_id="2" title="Title third" text="Third text"/>
+    <article id_article="4" author="Author fourth" user_id="1" title="Title fourth" text="Fourth text"/>
+
+    <commentary id_commentary="1" author="First author" text="First commentary" article_id="1" user_id="1"/>
+    <commentary id_commentary="2" author="Second author" text="Second commentary" article_id="1" user_id="3"/>
+    <commentary id_commentary="3" author="Third author" text="Third commentary" article_id="2" user_id="2"/>
+    <commentary id_commentary="4" author="Fourth author" text="Fourth commentary" article_id="3" user_id="1"/>
+
+</dataset>

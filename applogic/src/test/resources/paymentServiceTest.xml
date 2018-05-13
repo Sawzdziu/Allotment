@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <role id_role="1" name="ROLE_ADMIN"/>
+    <role id_role="2" name="ROLE_USER"/>
+
+    <user id_user="1" name="Adam" last_name="Kowalski" password="Test" email="a.kowalski@wp.pl" phone="123456789"
+          username="Admin"
+          is_active="true" role_id="1"/>
+    <user id_user="2" name="Andrzej" last_name="Nowak" password="Nowak" email="a.nowak@onet.pl" phone="123452341"
+          username="User"
+          is_active="true" role_id="2"/>
+    <user id_user="3" name="Justyna" last_name="Anders" password="Anders" email="j.anders@gmail.com" phone="88889990"
+          username="Test"
+          is_active="false" role_id="2"/>
+
+    <allotment id_allotment="1" bower="true" composter="false" number="1" squaremeter="300" tree_number="3"/>
+    <allotment id_allotment="2" bower="true" composter="true" number="2" squaremeter="150" tree_number="0"/>
+    <allotment id_allotment="3" bower="true" composter="true" number="3" squaremeter="220" tree_number="6"/>
+
+    <allotment_user id_allotment_user="1" is_active="true" user_id="1" allotment_id="1"/>
+    <allotment_user id_allotment_user="2" is_active="true" user_id="2" allotment_id="2"/>
+    <allotment_user id_allotment_user="3" is_active="true" user_id="3" allotment_id="3"/>
+    <allotment_user id_allotment_user="4" is_active="true" user_id="1" allotment_id="1"/>
+
+    <payment id_payment="1" charge="100" paid="false" title="Title first" allotment_user_id="1"/>
+    <payment id_payment="2" charge="230" paid="true" title="Title second" allotment_user_id="1"/>
+    <payment id_payment="3" charge="200" paid="true" title="Title third" allotment_user_id="2"/>
+    <payment id_payment="4" charge="150" paid="true" title="Title fourth" allotment_user_id="3"/>
+    <payment id_payment="5" charge="180" paid="true" title="Title fifth" allotment_user_id="2"/>
+    <payment id_payment="6" charge="230" paid="true" title="Title sixth" allotment_user_id="2"/>
+
+
+
+</dataset>

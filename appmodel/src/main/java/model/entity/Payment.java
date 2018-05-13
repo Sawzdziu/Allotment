@@ -8,7 +8,7 @@ public class Payment {
     private Integer idPayment;
     private String title;
     private Date date;
-    private Integer charge;
+    private Double charge;
     private Boolean paid;
     private AllotmentUser allotmentUserByAllotmentUserId;
 
@@ -45,11 +45,11 @@ public class Payment {
 
     @Basic
     @Column(name = "charge")
-    public Integer getCharge() {
+    public Double getCharge() {
         return charge;
     }
 
-    public void setCharge(Integer charge) {
+    public void setCharge(Double charge) {
         this.charge = charge;
     }
 
