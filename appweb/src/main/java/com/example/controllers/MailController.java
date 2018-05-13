@@ -40,7 +40,8 @@ public class MailController {
 
     @PostMapping("/new")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    public void newMail(@RequestBody NewMailDto newMailDto) {
+    public String newMail(@RequestBody NewMailDto newMailDto) {
         mailService.createNewMail(newMailDto);
+        return "Send successfully!";
     }
 }

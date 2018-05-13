@@ -6,6 +6,7 @@ import model.dao.AllotmentRepositoryDAO;
 import model.dao.AllotmentUserRepositoryDAO;
 import model.entity.Allotment;
 import model.entity.AllotmentUser;
+import model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,15 @@ public class AllotmentService {
     private AllotmentRepositoryDAO allotmentRepositoryDAO;
 
     @Autowired
+    private AuthenticationService authenticationService;
+
+    @Autowired
     private AllotmentUserRepositoryDAO allotmentUserRepositoryDAO;
+
+    public AllotmentDto getAllotmentForUser(){
+        User user = authenticationService.getUser();
+        return new AllotmentDto(allotmentUserRepositoryDAO.findAllotmentUserByUserAndActiveTrue(user).getAllotment());
+    }
 
     public List<UserAllotmentDto> getAllAllotments() {
         return getAllAllotment();

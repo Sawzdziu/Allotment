@@ -21,8 +21,13 @@ public class AllotmentController {
     @Autowired
     private AllotmentHistoryService allotmentHistoryService;
 
+    @GetMapping("/getAllotmentForUser")
+    public AllotmentDto getAllotmentForUser() {
+        return allotmentService.getAllotmentForUser();
+    }
+
     @GetMapping("/getAllAllotments")
-    @PreAuthorize("hasAnyRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public List<UserAllotmentDto> getAllAllotments() {
         return allotmentService.getAllAllotments();
     }
