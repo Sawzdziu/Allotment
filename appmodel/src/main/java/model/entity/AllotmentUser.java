@@ -3,7 +3,6 @@ package model.entity;
 import javax.persistence.*;
 
 @Entity(name = "allotment_user")
-//@Table(name = "allotment_user", schema = "rodobronca", catalog = "Allotment")
 public class AllotmentUser {
     private Integer idAllotmentUser;
     private Boolean isActive;
