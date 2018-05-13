@@ -24,8 +24,6 @@ DROP SCHEMA rodobronca CASCADE ;
 CREATE SCHEMA rodobronca;
 
 
-ALTER SCHEMA rodobronca OWNER TO postgres;
-
 --
 -- TOC entry 2896 (class 0 OID 0)
 -- Dependencies: 7
@@ -56,8 +54,6 @@ CREATE TABLE allotment (
 );
 
 
-ALTER TABLE allotment OWNER TO postgres;
-
 --
 -- TOC entry 197 (class 1259 OID 39045)
 -- Name: allotment_id_allotment_seq; Type: SEQUENCE; Schema: rodobronca; Owner: postgres
@@ -71,8 +67,6 @@ NO MINVALUE
 NO MAXVALUE
 CACHE 1;
 
-
-ALTER TABLE allotment_id_allotment_seq OWNER TO postgres;
 
 --
 -- TOC entry 2897 (class 0 OID 0)
@@ -96,8 +90,6 @@ MAXVALUE 2147483647
 CACHE 1;
 
 
-ALTER TABLE allotment_user_id_allotment_user_seq OWNER TO postgres;
-
 --
 -- TOC entry 199 (class 1259 OID 39049)
 -- Name: allotment_user; Type: TABLE; Schema: rodobronca; Owner: postgres
@@ -110,8 +102,6 @@ CREATE TABLE allotment_user (
     user_id integer NOT NULL
 );
 
-
-ALTER TABLE allotment_user OWNER TO postgres;
 
 --
 -- TOC entry 200 (class 1259 OID 39053)
@@ -128,8 +118,6 @@ CREATE TABLE article (
 );
 
 
-ALTER TABLE article OWNER TO postgres;
-
 --
 -- TOC entry 201 (class 1259 OID 39059)
 -- Name: article_id_article_seq; Type: SEQUENCE; Schema: rodobronca; Owner: postgres
@@ -143,8 +131,6 @@ NO MINVALUE
 NO MAXVALUE
 CACHE 1;
 
-
-ALTER TABLE article_id_article_seq OWNER TO postgres;
 
 --
 -- TOC entry 2898 (class 0 OID 0)
@@ -170,8 +156,6 @@ CREATE TABLE commentary (
 );
 
 
-ALTER TABLE commentary OWNER TO postgres;
-
 --
 -- TOC entry 203 (class 1259 OID 39067)
 -- Name: commentary_id_commentary_seq; Type: SEQUENCE; Schema: rodobronca; Owner: postgres
@@ -185,8 +169,6 @@ NO MINVALUE
 NO MAXVALUE
 CACHE 1;
 
-
-ALTER TABLE commentary_id_commentary_seq OWNER TO postgres;
 
 --
 -- TOC entry 2899 (class 0 OID 0)
@@ -209,8 +191,6 @@ CREATE TABLE mail (
 );
 
 
-ALTER TABLE mail OWNER TO postgres;
-
 --
 -- TOC entry 205 (class 1259 OID 39072)
 -- Name: mail_id_mail_seq; Type: SEQUENCE; Schema: rodobronca; Owner: postgres
@@ -223,8 +203,6 @@ NO MINVALUE
 NO MAXVALUE
 CACHE 1;
 
-
-ALTER TABLE mail_id_mail_seq OWNER TO postgres;
 
 --
 -- TOC entry 2900 (class 0 OID 0)
@@ -246,7 +224,6 @@ CREATE TABLE mailbody (
 );
 
 
-ALTER TABLE mailbody OWNER TO postgres;
 
 --
 -- TOC entry 207 (class 1259 OID 39080)
@@ -263,7 +240,6 @@ CREATE TABLE payment (
 );
 
 
-ALTER TABLE payment OWNER TO postgres;
 
 --
 -- TOC entry 208 (class 1259 OID 39083)
@@ -279,7 +255,6 @@ NO MAXVALUE
 CACHE 1;
 
 
-ALTER TABLE payment_id_payment_seq OWNER TO postgres;
 
 --
 -- TOC entry 2901 (class 0 OID 0)
@@ -303,8 +278,6 @@ CREATE TABLE recipient (
 );
 
 
-ALTER TABLE recipient OWNER TO postgres;
-
 --
 -- TOC entry 210 (class 1259 OID 39088)
 -- Name: recipient_id_recipient_seq; Type: SEQUENCE; Schema: rodobronca; Owner: postgres
@@ -317,8 +290,6 @@ NO MINVALUE
 NO MAXVALUE
 CACHE 1;
 
-
-ALTER TABLE recipient_id_recipient_seq OWNER TO postgres;
 
 --
 -- TOC entry 2902 (class 0 OID 0)
@@ -340,8 +311,6 @@ CREATE TABLE role (
 );
 
 
-ALTER TABLE role OWNER TO postgres;
-
 --
 -- TOC entry 212 (class 1259 OID 39093)
 -- Name: role_id_role_seq; Type: SEQUENCE; Schema: rodobronca; Owner: postgres
@@ -355,8 +324,6 @@ NO MINVALUE
 NO MAXVALUE
 CACHE 1;
 
-
-ALTER TABLE role_id_role_seq OWNER TO postgres;
 
 --
 -- TOC entry 2903 (class 0 OID 0)
@@ -385,8 +352,6 @@ CREATE TABLE "user" (
 );
 
 
-ALTER TABLE "user" OWNER TO postgres;
-
 --
 -- TOC entry 214 (class 1259 OID 39101)
 -- Name: user_id_user_seq; Type: SEQUENCE; Schema: rodobronca; Owner: postgres
@@ -400,8 +365,6 @@ NO MINVALUE
 NO MAXVALUE
 CACHE 1;
 
-
-ALTER TABLE user_id_user_seq OWNER TO postgres;
 
 --
 -- TOC entry 2904 (class 0 OID 0)
