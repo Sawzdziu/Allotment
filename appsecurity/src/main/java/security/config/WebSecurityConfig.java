@@ -83,6 +83,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         HttpMethod.GET,
                         "/",
                         "/*.html",
+                        "/assets/**",
                         "/favicon.ico",
                         "/**/*.html",
                         "/**/*.css",
