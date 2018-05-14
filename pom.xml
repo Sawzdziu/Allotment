@@ -115,7 +115,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <mainClass>com.example.AllotmentsApplication</mainClass>
-                    <layout>MODULE</layout>
+                    <layout>ZIP</layout>
                 </configuration>
                 <executions>
                     <execution>
