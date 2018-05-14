@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar target/allotments-1.0-SNAPSHOT-jar-with-dependencies.jar
+web: java -Dserver.port=$PORT -jar appweb/target/app-web-1.0-SNAPSHOT-jar-with-dependencies.jar
