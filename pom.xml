@@ -130,7 +130,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <mainClass>com.example.AllotmentsApplication</mainClass>
-                    <layout>WAR</layout>
+                    <layout>MODULE</layout>
                 </configuration>
                 <executions>
                     <execution>
