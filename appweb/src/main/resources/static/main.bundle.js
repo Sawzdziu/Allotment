@@ -327,7 +327,7 @@ var AuthenticationService = (function () {
     };
     AuthenticationService.prototype.login = function (jwtAuthenticationRequest) {
         var _this = this;
-        return this.http.post('http://localhost:8080/auth', jwtAuthenticationRequest)
+        return this.http.post('/auth', jwtAuthenticationRequest)
             .map(function (token) {
             var decoded = __WEBPACK_IMPORTED_MODULE_5_jwt_decode__(token.token);
             if (token && decoded) {
