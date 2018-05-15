@@ -868,7 +868,7 @@ var AllotmentService = (function () {
     function AllotmentService(http, router) {
         this.http = http;
         this.router = router;
-        this.usersURL = 'http://localhost:8080/allotment/';
+        this.usersURL = '/allotment/';
     }
     AllotmentService.prototype.getAllotmentForUser = function () {
         return this.http.get(this.usersURL + 'getAllotmentForUser');
@@ -920,7 +920,7 @@ var ArticleService = (function () {
     function ArticleService(http, router) {
         this.http = http;
         this.router = router;
-        this.usersURL = 'http://localhost:8080/articles/';
+        this.usersURL = '/articles/';
     }
     ArticleService.prototype.getLastFiveArticles = function () {
         return this.http.get(this.usersURL + 'getLast');
@@ -972,7 +972,7 @@ var CommentaryService = (function () {
     function CommentaryService(http, router) {
         this.http = http;
         this.router = router;
-        this.usersURL = 'http://localhost:8080/commentaries/';
+        this.usersURL = '/commentaries/';
     }
     CommentaryService.prototype.getCommentariesFromArticle = function (id) {
         return this.http.get(this.usersURL + 'getCommentariesFromArticle/' + id);
@@ -1063,7 +1063,7 @@ var MailService = (function () {
     function MailService(http, router) {
         this.http = http;
         this.router = router;
-        this.usersURL = 'http://localhost:8080/mails/';
+        this.usersURL = '/mails/';
     }
     MailService.prototype.getLastFiveMails = function () {
         return this.http.get(this.usersURL + 'getLast');
@@ -1155,7 +1155,7 @@ var PaymentService = (function () {
     function PaymentService(http, router) {
         this.http = http;
         this.router = router;
-        this.usersURL = 'http://localhost:8080/payments/';
+        this.usersURL = '/payments/';
     }
     PaymentService.prototype.getAllPayments = function () {
         return this.http.get(this.usersURL + 'getAllPayments');
@@ -1216,7 +1216,7 @@ var UserService = (function () {
     function UserService(http, router) {
         this.http = http;
         this.router = router;
-        this.usersURL = 'http://localhost:8080/users/';
+        this.usersURL = '/users/';
     }
     UserService.prototype.getAllActiveAllotmentUser = function () {
         return this.http.get(this.usersURL + 'getAllActiveUserAllotment');
