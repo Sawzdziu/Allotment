@@ -25,7 +25,7 @@ public class AllotmentUserRepositoryDAO {
 
     @Transactional
     public List<AllotmentUser> findAllotmentUserByUser(User user) {
-        return allotmentUserRepository.findByUser(user).orElseThrow(NoResultException::new);
+        return allotmentUserRepository.findByUser(user).orElse(Collections.emptyList());
     }
 
     @Transactional
