@@ -46,7 +46,7 @@ public class UserService {
         createUser(addEditUserDto);
     }
 
-    public void deactivateUser(Integer id){
+    public void deactivateUser(Integer id) {
         User user = userRepositoryDAO.findById(id);
         user.setActive(false);
 
@@ -106,7 +106,11 @@ public class UserService {
     }
 
     private Integer actualAllotment(Integer idUser) {
-        return allotmentUserService.getAllotmentUserAndActiveTrue(idUser).getAllotment().getIdAllotment();
+        if (allotmentUserService.getAllotmentUserAndActiveTrue(idUser) == null) {
+            return 0;
+        } else {
+            return allotmentUserService.getAllotmentUserAndActiveTrue(idUser).getAllotment().getIdAllotment();
+        }
     }
 
     private void updateAllotmentUser(User user, Integer allotmentId) {
