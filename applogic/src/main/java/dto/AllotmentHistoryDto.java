@@ -20,11 +20,6 @@ public class AllotmentHistoryDto {
         this.userDtoList = new LinkedList<>();
     }
 
-    public AllotmentHistoryDto(Integer idAllotment, List<UserDto> userDtoList) {
-        this.idAllotment = idAllotment;
-        this.userDtoList = userDtoList;
-    }
-
     public void addUser(User user){
         this.userDtoList.add(new UserDto(user));
     }

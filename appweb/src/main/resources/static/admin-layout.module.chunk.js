@@ -68697,7 +68697,7 @@ var EditAllotmentComponent = (function () {
 /***/ "./src/app/allotment/historyAllotment/history-allotment.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal-header\">\r\n    <h4 class=\"modal-title pull-left\">User history</h4>\r\n    <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"bsModalRef.hide()\">\r\n        <span aria-hidden=\"true\">&times;</span>\r\n    </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n    <div class=\"row form-group\" *ngIf=\"allotmentHistory !== undefined; else noData\">\r\n        <table class=\"table\">\r\n            <thead>\r\n            <tr class=\"blue-header\">\r\n                <th>L.p</th>\r\n                <th>Name</th>\r\n                <th>Phone</th>\r\n                <th>E-mail</th>\r\n            </tr>\r\n            </thead>\r\n            <tbody class=\"table-hover\">\r\n            <tbody *ngFor=\"let allotmentUser of allotmentHistory.userDtoList; let i = index\">\r\n            <tr>\r\n                <td>{{i + 1}}</td>\r\n                <td>{{allotmentUser.name + ' ' + allotmentUser.lastName}}</td>\r\n                <td>{{allotmentUser.phone}}</td>\r\n                <td>{{allotmentUser.email}}</td>\r\n            </tr>\r\n            </tbody>\r\n        </table>\r\n    </div>\r\n    <ng-template #noData>\r\n        <alert type=\"warning\">No user history</alert>\r\n    </ng-template>\r\n</div>\r\n<div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default\" (click)=\"bsModalRef.hide()\">Close</button>\r\n</div>"
+module.exports = "<div class=\"modal-header\">\r\n    <h4 class=\"modal-title pull-left\">User history</h4>\r\n    <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"bsModalRef.hide()\">\r\n        <span aria-hidden=\"true\">&times;</span>\r\n    </button>\r\n</div>\r\n<div class=\"modal-body\" *ngIf=\"loaded\">\r\n    <div class=\"row form-group\" *ngIf=\"allotmentHistory?.userDtoList.length > 0\">\r\n        <table class=\"table\">\r\n            <thead>\r\n            <tr class=\"blue-header\">\r\n                <th>L.p</th>\r\n                <th>Name</th>\r\n                <th>Phone</th>\r\n                <th>E-mail</th>\r\n            </tr>\r\n            </thead>\r\n            <tbody class=\"table-hover\">\r\n            <tbody *ngFor=\"let allotmentUser of allotmentHistory.userDtoList; let i = index\">\r\n            <tr>\r\n                <td>{{i + 1}}</td>\r\n                <td>{{allotmentUser.name + ' ' + allotmentUser.lastName}}</td>\r\n                <td>{{allotmentUser.phone}}</td>\r\n                <td>{{allotmentUser.email}}</td>\r\n            </tr>\r\n            </tbody>\r\n        </table>\r\n    </div>\r\n    <alert *ngIf=\"!(allotmentHistory?.userDtoList.length > 0)\" type=\"warning\">No user history</alert>\r\n</div>\r\n<div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-default\" (click)=\"bsModalRef.hide()\">Close</button>\r\n</div>"
 
 /***/ }),
 
@@ -68725,6 +68725,7 @@ var HistoryAllotmentComponent = (function () {
     function HistoryAllotmentComponent(bsModalRef, allotmentService) {
         this.bsModalRef = bsModalRef;
         this.allotmentService = allotmentService;
+        this.loaded = false;
     }
     HistoryAllotmentComponent.prototype.ngOnInit = function () {
         this.getHistoryAllotment();
@@ -68732,6 +68733,7 @@ var HistoryAllotmentComponent = (function () {
     HistoryAllotmentComponent.prototype.getHistoryAllotment = function () {
         var _this = this;
         this.allotmentService.getAllAllotmentHistory(this.idAllotment).subscribe(function (data) {
+            _this.loaded = true;
             _this.allotmentHistory = data;
         });
     };
